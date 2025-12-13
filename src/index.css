@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui"{
+  themes: light --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  
+  --color-primary: #E63946;
+  --color-primary-content: #FFFFFF;
+  
+  --color-secondary: #2B2D42;
+  --color-secondary-content: #FFFFFF;
+  
+  --color-base-100: #FFFFFF;
+  --color-base-200: #F8F9FA;
+  --color-base-300: #E9ECEF;
+  --color-base-content: #212529;
+  
+  --color-accent: #457B9D;
+  --color-accent-content: #FFFFFF;
+  
+  --color-neutral: #6C757D;
+  --color-neutral-content: #FFFFFF;
+  
+}
+
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+.menu a.active {
+  @apply text-primary underline font-bold underline-offset-3;
+}
