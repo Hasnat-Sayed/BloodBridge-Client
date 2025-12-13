@@ -14,7 +14,8 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();

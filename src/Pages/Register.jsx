@@ -6,16 +6,17 @@ import auth from '../firebase/firebase.config';
 import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaRegEyeSlash } from 'react-icons/fa';
+import axios from 'axios';
 
 const Register = () => {
 
-    const { registerWithEmailAndPass, setUser, signInWithGoogle, setLoading } = useContext(AuthContext);
+    const { user, registerWithEmailAndPass, setUser, signInWithGoogle, setLoading } = useContext(AuthContext);
     const [error, setError] = useState("");
     const [show, setShow] = useState(false)
     const navigate = useNavigate();
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const pass = e.target.password.value;
@@ -40,25 +41,54 @@ const Register = () => {
 
 
         const name = e.target.name.value;
-        const photo = e.target.photo.value;
-        registerWithEmailAndPass(email, pass)
-            .then((userCredential) => {
-                updateProfile(auth.currentUser, {
-                    displayName: name, photoURL: photo
-                }).then(() => {
-                    setUser(userCredential.user)
-                    toast.success("Registration Successful")
-                    navigate("/")
-                }).catch((error) => {
+        const photo = e.target.photo;
+        const file = photo.files[0];
+        const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgbbURL}`, { image: file },
+            {
+                headers: {
+
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+        const mainPhotoUrl = res.data.data.display_url
+
+        const formData = {
+            email,
+            pass,
+            name,
+            mainPhotoUrl,
+        }
+
+        if (res.data.success == true) {
+            registerWithEmailAndPass(email, pass)
+                .then((userCredential) => {
+                    updateProfile(auth.currentUser, {
+                        displayName: name, photoURL: mainPhotoUrl
+                    }).then(() => {
+                        setUser(userCredential.user)
+                        axios.post('http://localhost:5000/users', formData)
+                            .then(res => {
+                                console.log(res.data);
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            })
+                        toast.success("Registration Successful")
+                        navigate("/")
+                    }).catch((error) => {
+                        console.log(error)
+                        toast.error(error.message);
+                    })
+                })
+                .catch((error) => {
                     console.log(error)
                     toast.error(error.message);
-                })
-            })
-            .catch((error) => {
-                console.log(error)
-                toast.error(error.message);
 
-            })
+                })
+            console.log(user)
+        }
+
+
 
     }
     const handleGoogleUp = () => {
@@ -78,14 +108,14 @@ const Register = () => {
 
     return (
         <div className="bg-base-300 flex justify-center px-4 py-10 items-center min-h-screen">
-            <div className="card bg-base-100  w-full max-w-xl shrink-0 shadow-2xl my-16 pt-10 pb-3 rounded-2xl">
+            <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl my-16 pt-10 pb-3 rounded-2xl">
                 <h2 className="font-semibold text-4xl text-center pb-7 mx-10 border-primary text-primary border-b">
                     Register Your Account
                 </h2>
                 <form onSubmit={handleSubmit} className="card-body">
                     <fieldset className="fieldset md:px-20">
 
-                        <label className="label font-semibold">Name</label>
+                        <label className="label text-secondary font-semibold">Name</label>
                         <input
                             name="name"
                             type="text"
@@ -94,16 +124,15 @@ const Register = () => {
                             required
                         />
 
-                        <label className="label font-semibold">Photo URL</label>
+                        <label className="label text-secondary font-semibold">Photo</label>
                         <input
                             name="photo"
-                            type="text"
-                            className="input w-full bg-base-200"
-                            placeholder="Enter Your Photo URL"
+                            type="file"
+                            className="input w-full bg-base-200 file:mr-4 file:-ml-4 file:py-2.5 file:px-5 file:rounded-l-sm  file:text-sm file:font-semibold file:bg-red-100 file:text-red-600 hover:file:bg-red-200 file:cursor-pointer"
                             required
                         />
 
-                        <label className="label font-semibold">Email</label>
+                        <label className="label text-secondary font-semibold">Email</label>
                         <input
                             name="email"
                             type="email"
@@ -113,7 +142,7 @@ const Register = () => {
                         />
 
                         <div className='relative'>
-                            <label className="label font-semibold">Password</label>
+                            <label className="label text-secondary font-semibold">Password</label>
                             <input
                                 name="password"
                                 type={show ? "text" : "password"}

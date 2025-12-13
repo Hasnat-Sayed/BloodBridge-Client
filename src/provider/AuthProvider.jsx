@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config';
+import axios from 'axios';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
@@ -11,6 +12,7 @@ const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
+    const [role, setRole] = useState('');
 
     const registerWithEmailAndPass = (email, pass) => {
         return createUserWithEmailAndPassword(auth, email, pass)
@@ -26,11 +28,23 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
             setLoading(false)
+            console.log(currentUser)
         })
         return () => {
             unsubscribe()
         }
     }, [])
+
+
+    useEffect(() => {
+        if (!user) return;
+        axios.get(`http://localhost:5000/users/role/${user.email}`)
+            .then(res => {
+                setRole(res.data.role)
+            })
+    }, [user])
+
+    console.log(role)
 
 
     const authData = {
