@@ -11,6 +11,7 @@ const googleAuthProvider = new GoogleAuthProvider()
 const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true);
+    const [roleLoading, setRoleLoading] = useState(true);
     const [user, setUser] = useState(null);
     const [role, setRole] = useState('');
 
@@ -28,7 +29,7 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
             setLoading(false)
-            console.log(currentUser)
+            // console.log(currentUser)
         })
         return () => {
             unsubscribe()
@@ -37,14 +38,22 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        if (!user) return;
-        axios.get(`http://localhost:5000/users/role/${user.email}`)
-            .then(res => {
-                setRole(res.data.role)
-            })
+        const fetchRole = async () => {
+        try {
+            const res = await axios.get(
+                `http://localhost:5000/users/role/${user.email}`
+            );
+            setRole(res.data.role);
+        } catch {
+            setRole("user");
+        } finally {
+            setRoleLoading(false);
+        }
+    };
+
+    fetchRole();
     }, [user])
 
-    console.log(role)
 
 
     const authData = {
@@ -54,6 +63,8 @@ const AuthProvider = ({ children }) => {
         setLoading,
         loading,
         signInWithGoogle,
+        role,
+        roleLoading,
 
     }
 

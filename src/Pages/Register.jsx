@@ -43,6 +43,8 @@ const Register = () => {
         const name = e.target.name.value;
         const photo = e.target.photo;
         const file = photo.files[0];
+        const role = e.target.role.value;
+
         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgbbURL}`, { image: file },
             {
                 headers: {
@@ -57,6 +59,7 @@ const Register = () => {
             pass,
             name,
             mainPhotoUrl,
+            role
         }
 
         if (res.data.success == true) {
@@ -131,6 +134,13 @@ const Register = () => {
                             className="input w-full bg-base-200 file:mr-4 file:-ml-4 file:py-2.5 file:px-5 file:rounded-l-sm  file:text-sm file:font-semibold file:bg-red-100 file:text-red-600 hover:file:bg-red-200 file:cursor-pointer"
                             required
                         />
+
+                        <label className="label text-secondary font-semibold">Photo</label>
+                        <select name="role" defaultValue="Choose Role" className="select w-full bg-base-200">
+                            <option disabled={true}>Choose Role</option>
+                            <option value="manager">Manager</option>
+                            <option value="buyer">Buyer</option>
+                        </select>
 
                         <label className="label text-secondary font-semibold">Email</label>
                         <input
