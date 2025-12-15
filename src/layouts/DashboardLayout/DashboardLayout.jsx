@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router';
-import Aside from '../components/Aside';
+import Aside from '../../components/Aside';
 
 const DashboardLayout = () => {
     return (

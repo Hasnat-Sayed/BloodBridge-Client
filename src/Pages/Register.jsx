@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
@@ -7,13 +7,34 @@ import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaRegEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
+import { TbFidgetSpinner } from 'react-icons/tb';
 
 const Register = () => {
 
-    const { user, registerWithEmailAndPass, setUser, signInWithGoogle, setLoading } = useContext(AuthContext);
+    const { user, loading, registerWithEmailAndPass, setUser, signInWithGoogle, setLoading } = useContext(AuthContext);
     const [error, setError] = useState("");
     const [show, setShow] = useState(false)
     const navigate = useNavigate();
+
+
+    const [upazilas, setUpazilas] = useState([])
+    const [districts, setDistricts] = useState([])
+
+    const [district, setDistrict] = useState('')
+    const [upazila, setUpazila] = useState('')
+
+
+    useEffect(() => {
+        axios.get('/upazila.json')
+            .then(res => {
+                setUpazilas(res.data.upazilas)
+            })
+        axios.get('/district.json')
+            .then(res => {
+                setDistricts(res.data.districts)
+            })
+    }, [])
+
 
 
     const handleSubmit = async (e) => {
@@ -43,7 +64,7 @@ const Register = () => {
         const name = e.target.name.value;
         const photo = e.target.photo;
         const file = photo.files[0];
-        const role = e.target.role.value;
+        const blood = e.target.blood.value;
 
         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgbbURL}`, { image: file },
             {
@@ -59,8 +80,11 @@ const Register = () => {
             pass,
             name,
             mainPhotoUrl,
-            role
+            blood,
+            district,
+            upazila
         }
+        console.log(formData)
 
         if (res.data.success == true) {
             registerWithEmailAndPass(email, pass)
@@ -118,6 +142,15 @@ const Register = () => {
                 <form onSubmit={handleSubmit} className="card-body">
                     <fieldset className="fieldset md:px-20">
 
+                        <label className="label text-secondary font-semibold">Email</label>
+                        <input
+                            name="email"
+                            type="email"
+                            className="input w-full bg-base-200"
+                            placeholder="Enter Your Email"
+                            required
+                        />
+
                         <label className="label text-secondary font-semibold">Name</label>
                         <input
                             name="name"
@@ -135,21 +168,36 @@ const Register = () => {
                             required
                         />
 
-                        <label className="label text-secondary font-semibold">Photo</label>
-                        <select name="role" defaultValue="Choose Role" className="select w-full bg-base-200">
-                            <option disabled={true}>Choose Role</option>
-                            <option value="manager">Manager</option>
-                            <option value="buyer">Buyer</option>
+                        <label className="label text-secondary font-semibold">Blood Group</label>
+                        <select name="blood" defaultValue="Choose Blood Group" className="select w-full bg-base-200">
+                            <option disabled={true}>Choose Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
                         </select>
 
-                        <label className="label text-secondary font-semibold">Email</label>
-                        <input
-                            name="email"
-                            type="email"
-                            className="input w-full bg-base-200"
-                            placeholder="Enter Your Email"
-                            required
-                        />
+                        <label className="label text-secondary font-semibold">Your District</label>
+                        <select value={district} onChange={(e) => setDistrict(e.target.value)} className="select w-full bg-base-200">
+                            <option disabled value=''>Select Your District</option>
+                            {
+                                districts.map(d => <option value={d?.name} key={d.id} > {d?.name}</option>)
+                            }
+                        </select>
+
+                        <label className="label text-secondary font-semibold">Your Upazila</label>
+                        <select value={upazila} onChange={(e) => setUpazila(e.target.value)} className="select w-full bg-base-200">
+                            <option disabled value=''>Select Your Upazila</option>
+                            {
+                                upazilas.map(u => <option value={u?.name} key={u.id} >{u?.name}</option>)
+                            }
+                        </select>
+
+
 
                         <div className='relative'>
                             <label className="label text-secondary font-semibold">Password</label>
@@ -172,7 +220,11 @@ const Register = () => {
                         )}
 
                         <button type="submit" className="btn btn-primary mt-3">
-                            Register
+                            {loading ? (
+                                <TbFidgetSpinner className='animate-spin m-auto' />
+                            ) : (
+                                'Register'
+                            )}
                         </button>
 
                         <div className="flex items-center justify-center gap-2 my-2">
@@ -195,7 +247,7 @@ const Register = () => {
                     </fieldset>
                 </form>
             </div>
-        </div>
+        </div >
     );
 };
 

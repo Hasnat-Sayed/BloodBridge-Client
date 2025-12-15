@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router";
-import RootLayout from "../RootLayout/RootLayout";
+import RootLayout from "../layouts/RootLayout/RootLayout";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
-import DashboardLayout from "../DashboardLayout/DashboardLayout";
+import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import MainDashboard from "../Pages/Dashboard/MainDashboard";
-import AddProduct from "../Pages/Dashboard/AddProduct";
+import ManageProduct from "../Pages/Dashboard/ManageProduct";
+import CreateRequest from "../Pages/Dashboard/CreateRequest";
 
 const router = createBrowserRouter([
     {
@@ -35,8 +36,12 @@ const router = createBrowserRouter([
                 element: <MainDashboard></MainDashboard>
             },
             {
-                path:'add-product',
-                element: <AddProduct />
+                path: 'create-request',
+                element: <CreateRequest></CreateRequest>
+            },
+            {
+                path: 'manage-product',
+                element: <ManageProduct />
             },
         ]
     }

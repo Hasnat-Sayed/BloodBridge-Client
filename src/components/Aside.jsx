@@ -1,8 +1,8 @@
 // Aside.jsx - Fixed Sidebar Component
 import React, { useState } from 'react';
 import { NavLink } from 'react-router';
-import { MdDashboard, MdPeople, MdArticle, MdLogout, MdMenu, MdClose } from 'react-icons/md';
-import { FaHeartbeat, FaUserPlus, FaChartLine } from 'react-icons/fa';
+import { MdDashboard,  MdArticle, MdLogout, MdMenu, MdClose, MdAddCircleOutline } from 'react-icons/md';
+import { FaUserPlus, FaChartLine } from 'react-icons/fa';
 import { BiDonateBlood } from 'react-icons/bi';
 
 const Aside = () => {
@@ -57,19 +57,18 @@ const Aside = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="/dashboard/add-product"
+                                to="/dashboard/create-request"
                                 onClick={() => setIsSidebarOpen(false)}
                                 className={({ isActive }) =>
                                     `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
                                 }
                             >
-                                <MdPeople className="text-xl" />
-                                add prodoct
+                                <MdAddCircleOutline className="text-xl" />Create Donation Request
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
-                                to="/dashboard/all-donation-requests"
+                                to="/dashboard/manage-product"
                                 onClick={() => setIsSidebarOpen(false)}
                                 className={({ isActive }) =>
                                     `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
