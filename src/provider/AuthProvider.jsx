@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
     const [roleLoading, setRoleLoading] = useState(true);
     const [user, setUser] = useState(null);
     const [role, setRole] = useState('');
+    const [userStatus, setUserStatus] = useState('')
 
     const registerWithEmailAndPass = (email, pass) => {
         return createUserWithEmailAndPassword(auth, email, pass)
@@ -38,20 +39,13 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        const fetchRole = async () => {
-        try {
-            const res = await axios.get(
-                `http://localhost:5000/users/role/${user.email}`
-            );
-            setRole(res.data.role);
-        } catch {
-            setRole("user");
-        } finally {
-            setRoleLoading(false);
-        }
-    };
-
-    fetchRole();
+        if (!user) return;
+        axios.get(`http://localhost:5000/users/role/${user.email}`)
+            .then(res => {
+                setRole(res.data.role)
+                setUserStatus(res.data.status)
+                setRoleLoading(false)
+            })
     }, [user])
 
 
@@ -65,6 +59,7 @@ const AuthProvider = ({ children }) => {
         signInWithGoogle,
         role,
         roleLoading,
+        userStatus
 
     }
 

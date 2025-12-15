@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import axios from 'axios';
-import useAxios from '../../hooks/useAxios';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const CreateRequest = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, userStatus } = useContext(AuthContext);
 
     const [upazilas, setUpazilas] = useState([])
     const [districts, setDistricts] = useState([])
@@ -14,7 +14,7 @@ const CreateRequest = () => {
     const [district, setDistrict] = useState('')
     const [upazila, setUpazila] = useState('');
 
-    const axiosInstance = useAxios();
+    const axiosSecure = useAxiosSecure();
 
 
     useEffect(() => {
@@ -58,13 +58,25 @@ const CreateRequest = () => {
             donation_status: 'pending'
         }
 
-        axiosInstance.post('/requests', formData)
+        axiosSecure.post('/requests', formData)
             .then(res => {
                 console.log(res.data.insertedId);
                 toast.success("Request Created Successfully");
                 form.reset();
             }).catch(err => console.log(err))
     }
+
+    if (userStatus == 'blocked')
+        return (
+            <div className=" flex justify-center items-center min-h-screen">
+                <div className="text-center mb-10">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-base-content">
+                        Sorry you are<span className="text-primary"> Blocked!</span>
+                    </h1>
+
+                </div>
+            </div>
+        )
 
 
     return (

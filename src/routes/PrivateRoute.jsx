@@ -4,11 +4,11 @@ import { Navigate, useLocation } from 'react-router';
 import Loading from '../components/Loading';
 
 const PrivateRoute = ({children}) => {
-    const {user, loading} = useContext(AuthContext)
+    const {user, loading, roleLoading} = useContext(AuthContext)
 
     const location = useLocation();
 
-    if(loading){
+    if(loading || roleLoading){
         return <div className='flex items-center justify-center min-h-screen'><Loading></Loading></div>
     }
 

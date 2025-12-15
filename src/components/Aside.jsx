@@ -1,12 +1,14 @@
 // Aside.jsx - Fixed Sidebar Component
-import React, { useState } from 'react';
-import { NavLink } from 'react-router';
-import { MdDashboard,  MdArticle, MdLogout, MdMenu, MdClose, MdAddCircleOutline } from 'react-icons/md';
-import { FaUserPlus, FaChartLine } from 'react-icons/fa';
+import React, { useContext, useState } from 'react';
+import { Link, NavLink } from 'react-router';
+import { MdDashboard, MdArticle, MdLogout, MdMenu, MdClose, MdAddCircleOutline, MdHome } from 'react-icons/md';
+import { FaUserPlus, FaChartLine, FaUsers } from 'react-icons/fa';
 import { BiDonateBlood } from 'react-icons/bi';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Aside = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const { role } = useContext(AuthContext)
 
     return (
         <>
@@ -36,7 +38,10 @@ const Aside = () => {
                         <img src="https://img.icons8.com/?size=100&id=26115&format=png&color=E63946" className="w-12 h-12" alt="" />
                         <div>
                             <h1 className="text-xl font-bold">Blood Bridge</h1>
-                            <p className="text-xs mt-1 opacity-70">Admin Dashboard</p>
+                            <p className="text-xs mt-1 opacity-70">
+                                {role == 'admin' && 'Admin Dashboard'}
+                                {role == 'donor' && 'Donor Dashboard'}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -55,29 +60,45 @@ const Aside = () => {
                                 Dashboard
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/create-request"
-                                onClick={() => setIsSidebarOpen(false)}
-                                className={({ isActive }) =>
-                                    `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
-                                }
-                            >
-                                <MdAddCircleOutline className="text-xl" />Create Donation Request
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/manage-product"
-                                onClick={() => setIsSidebarOpen(false)}
-                                className={({ isActive }) =>
-                                    `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
-                                }
-                            >
-                                <BiDonateBlood className="text-xl" />
-                                All Donations
-                            </NavLink>
-                        </li>
+
+
+                        {/* donor links */}
+                        {
+                            role == 'donor' && (
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/create-request"
+                                        onClick={() => setIsSidebarOpen(false)}
+                                        className={({ isActive }) =>
+                                            `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
+                                        }
+                                    >
+                                        <MdAddCircleOutline className="text-xl" />Create Donation Request
+                                    </NavLink>
+                                </li>
+                            )
+                        }
+
+
+                        {/* admin links */}
+                        {
+                            role == 'admin' && (
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/all-users"
+                                        onClick={() => setIsSidebarOpen(false)}
+                                        className={({ isActive }) =>
+                                            `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
+                                        }
+                                    >
+                                        <FaUsers className="text-xl" />
+                                        All Users
+                                    </NavLink>
+                                </li>
+                            )
+                        }
+
+
                         <li>
                             <NavLink
                                 to="/dashboard/content-management"
@@ -118,16 +139,16 @@ const Aside = () => {
 
 
                 </nav>
-                {/* Logout Button */}
-                {/* <div className="p-4 border-t border-secondary-content/10">
-                    <button
-                        // onClick={handleSignOut}
-                        className="btn btn-error btn-block gap-2"
+
+                <div className="p-4 border-t border-secondary-content/40">
+                    <Link
+                        to='/'
+                        className="btn btn-accent btn-block gap-2"
                     >
-                        <MdLogout className="text-xl" />
-                        Logout
-                    </button>
-                </div> */}
+                        <MdHome className="text-xl" />
+                        Back to Home
+                    </Link>
+                </div>
             </aside>
         </>
     );
