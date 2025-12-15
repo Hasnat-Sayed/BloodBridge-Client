@@ -3,7 +3,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { AuthContext } from '../../provider/AuthProvider';
 import Loading from '../../components/Loading';
 import { Link } from 'react-router';
-import { FaBan, FaUnlock, FaUserCheck } from 'react-icons/fa';
+import { FaBan, FaUnlock, FaUserCheck, FaUserShield } from 'react-icons/fa';
 
 const AllUsers = () => {
 
@@ -41,6 +41,14 @@ const AllUsers = () => {
             })
     }
 
+    const handleMakeAdmin = (email, role) => {
+        axiosSecure.patch(`/update/user/admin?email=${email}&role=${role}`)
+            .then(res => {
+                console.log(res.data);
+                fetchUsers();
+            })
+    }
+
 
 
 
@@ -53,7 +61,7 @@ const AllUsers = () => {
             </div>
 
 
-            <div className="overflow-x-auto border border-neutral rounded-xl shadow-2xl">
+            <div className="overflow-x-auto rounded-xl shadow-2xl">
                 <table className="table">
                     <thead className='text-primary text-xl bg-base-100'>
                         <tr>
@@ -63,10 +71,10 @@ const AllUsers = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                         {
                             users.map(user =>
-                                <tr key={user?._id} className='bg-base-300 '>
+                                <tr key={user?._id} className='bg-base-200'>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
@@ -84,11 +92,13 @@ const AllUsers = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <p className='text-black text-lg font-semibold'>{user?.role}</p>
+                                        <p className={`badge text-white badge-lg ${user.role === 'admin' ? 'badge-primary' : user.role === 'volunteer' ? 'badge-secondary' : 'badge-accent'}`}>
+                                            {user?.role}
+                                        </p>
                                     </td>
                                     <td>
                                         <p className={`badge badge-outline text-lg font-semibold 
-                                        ${user?.status == 'active' ? 'text-success' : 'text-warning'}`}>
+                                        ${user?.status == 'active' ? 'text-success' : 'text-error'}`}>
                                             {user?.status}
                                         </p>
                                     </td>
@@ -119,6 +129,17 @@ const AllUsers = () => {
                                                 >
                                                     <FaUserCheck className="text-sm" />
                                                     Make Volunteer
+                                                </button>
+                                            )}
+
+                                            {/* make admin */}
+                                            {(user?.role == 'donor' || user?.role == 'volunteer') && (
+                                                <button
+                                                    onClick={() => handleMakeAdmin(user?.email, 'admin')}
+                                                    className="btn btn-sm btn-success rounded-2xl"
+                                                >
+                                                    <FaUserShield className="text-sm" />
+                                                    Make Admin
                                                 </button>
                                             )}
 
