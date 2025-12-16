@@ -13,6 +13,7 @@ import Funding from "../Pages/Funding";
 import PaymentSuccess from "../Pages/PaymentSuccess";
 import SearchRequest from "../Pages/SearchRequest";
 import DonationRequests from "../Pages/DonationRequests";
+import DonationDetails from "../Pages/DonationDetails";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path: '/pending-requests',
                 element: <DonationRequests></DonationRequests>
+            },
+            {
+                path: '/details/:id',
+                element: <PrivateRoute><DonationDetails></DonationDetails></PrivateRoute>
             }
         ]
     },

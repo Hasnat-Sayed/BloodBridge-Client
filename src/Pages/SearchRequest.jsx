@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaCalendarAlt, FaClock, FaEye, FaMapMarkerAlt, FaSearch, FaTint } from 'react-icons/fa';
 import useAxios from '../hooks/useAxios';
+import { Link } from 'react-router';
 
 const SearchRequest = () => {
 
@@ -143,12 +144,12 @@ const SearchRequest = () => {
                                     </div>
                                 </div>
 
-                                <div className="card-actions mt-2">
-                                    <button className="btn btn-primary w-full gap-2">
+                                <Link to={`/details/${request?._id}`}>
+                                    <button className="btn btn-primary w-full gap-2 hover:scale-105 transition-all transform duration-200">
                                         <FaEye />
                                         View Details
                                     </button>
-                                </div>
+                                </Link>
                             </div>
                         </div>
                     ))}

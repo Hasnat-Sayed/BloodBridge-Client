@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useAxios from '../hooks/useAxios';
 import { FaCalendarAlt, FaClock, FaEye, FaMapMarkerAlt } from 'react-icons/fa';
 import Loading from '../components/Loading';
+import { Link } from 'react-router';
 
 const DonationRequests = () => {
     const [requests, setRequests] = useState([]);
@@ -12,7 +13,7 @@ const DonationRequests = () => {
     useEffect(() => {
         axiosInstance.get('/pending-requests')
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setRequests(res.data)
                 setLoading(false)
             })
@@ -60,11 +61,14 @@ const DonationRequests = () => {
                                         </div>
                                     </div>
 
-                                    <div className="card-actions mt-2">
-                                        <button className="btn btn-primary w-full gap-2">
-                                            <FaEye />
-                                            View Details
-                                        </button>
+                                    <div className="mt-2">
+                                        <Link to={`/details/${request?._id}`}>
+                                            <button className="btn btn-primary w-full gap-2 hover:scale-105 transition-all transform duration-200">
+                                                <FaEye />
+                                                View Details
+                                            </button>
+                                        </Link>
+
                                     </div>
                                 </div>
                             </div>
