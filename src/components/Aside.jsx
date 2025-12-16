@@ -41,6 +41,7 @@ const Aside = () => {
                             <p className="text-xs mt-1 opacity-70">
                                 {role == 'admin' && 'Admin Dashboard'}
                                 {role == 'donor' && 'Donor Dashboard'}
+                                {role == 'volunteer' && 'Volunteer Dashboard'}
                             </p>
                         </div>
                     </div>
@@ -65,17 +66,31 @@ const Aside = () => {
                         {/* donor links */}
                         {
                             role == 'donor' && (
-                                <li>
-                                    <NavLink
-                                        to="/dashboard/create-request"
-                                        onClick={() => setIsSidebarOpen(false)}
-                                        className={({ isActive }) =>
-                                            `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
-                                        }
-                                    >
-                                        <MdAddCircleOutline className="text-xl" />Create Donation Request
-                                    </NavLink>
-                                </li>
+                                <>
+                                    <li>
+                                        <NavLink
+                                            to="/dashboard/create-request"
+                                            onClick={() => setIsSidebarOpen(false)}
+                                            className={({ isActive }) =>
+                                                `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
+                                            }
+                                        >
+                                            <MdAddCircleOutline className="text-xl" />Create Donation Request
+                                        </NavLink>
+                                    </li>
+
+                                    <li>
+                                        <NavLink
+                                            to="/dashboard/my-requests"
+                                            onClick={() => setIsSidebarOpen(false)}
+                                            className={({ isActive }) =>
+                                                `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
+                                            }
+                                        >
+                                            <MdArticle className="text-xl" />My Donation Requests
+                                        </NavLink>
+                                    </li>
+                                </>
                             )
                         }
 
