@@ -29,10 +29,10 @@ const SearchRequest = () => {
     const handleSearch = (e) => {
         e.preventDefault();
         const bloodGroup = e.target.blood.value;
-        console.log(bloodGroup);
+        // console.log(bloodGroup);
         axiosInstance.get(`/search-requests?bloodGroup=${bloodGroup}&district=${district}&upazila=${upazila}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 setSearchResults(res.data)
             })
     }
