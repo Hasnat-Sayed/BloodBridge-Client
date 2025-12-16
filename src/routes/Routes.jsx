@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import MyRequests from "../Pages/Dashboard/MyRequests";
 import Funding from "../Pages/Funding";
 import PaymentSuccess from "../Pages/PaymentSuccess";
+import SearchRequest from "../Pages/SearchRequest";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: '/payment-cancelled',
                 element: <PaymentSuccess></PaymentSuccess>
+            },
+            {
+                path: '/search',
+                element: <SearchRequest></SearchRequest>
             }
         ]
     },

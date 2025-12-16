@@ -93,10 +93,10 @@ const Funding = () => {
                         </div>
                     </div>
 
-                    <div className="flex-1  card bg-base-100 shadow-2xl rounded-2xl">
+                    <div className="flex-1 card bg-base-100 shadow-2xl rounded-2xl  border border-secondary/20">
 
                         <form onSubmit={handleCheckout} className="card-body ">
-                            <h3 className="text-2xl font-bold text-center mb-4 text-secondary">
+                            <h3 className="text-3xl font-bold text-center mt-8 mb-3 text-secondary">
                                 Support Our Mission
                             </h3>
                             <fieldset className="fieldset md:px-20">
