@@ -19,9 +19,11 @@ const AllUsers = () => {
             })
             .catch(err => console.log(err));
     }
+    
 
     useEffect(() => {
         fetchUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [axiosSecure])
 
 

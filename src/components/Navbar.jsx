@@ -36,7 +36,7 @@ const Navbar = () => {
                         tabIndex="0"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow">
                         <li><NavLink to="/">Home</NavLink></li>
-                        <li><NavLink to="/all-services">Pets & Supplies</NavLink></li>
+                        <li><NavLink to="/donation-requests">Pets & Supplies</NavLink></li>
                         {
                             user && (<>
                                 <li><NavLink to="/add-services">Add Listing</NavLink></li>
@@ -64,14 +64,13 @@ const Navbar = () => {
 
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 font-semibold">
                     <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/all-services">Pets & Supplies</NavLink></li>
+                    <li><NavLink to="/all-services">Donation Requests</NavLink></li>
+                    <li><NavLink to="/all-services">Search</NavLink></li>
                     {
                         user && (<>
-                            <li><NavLink to="/add-services">Add Listing</NavLink></li>
-                            <li><NavLink to="/my-services">My Listings</NavLink></li>
-                            <li><NavLink to="/my-orders">My Orders</NavLink></li>
+                            <li><NavLink to="/funding">Funding</NavLink></li>
                         </>)
                     }
                 </ul>

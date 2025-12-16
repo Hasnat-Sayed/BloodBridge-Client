@@ -40,8 +40,6 @@ const MyRequests = () => {
         }
     }
 
-
-
     const getStatusBadge = (status) => {
         const statusConfig = {
             pending: 'badge-warning',
@@ -59,16 +57,18 @@ const MyRequests = () => {
             <div className="text-center mb-10">
                 <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary">My <span className='text-primary'>Requests</span></h3>
             </div>
-            <div className="overflow-x-auto rounded-box border border-base-content/50 bg-base-100 shadow-2xl">
+            <div className="overflow-x-auto rounded-box border border-base-300 bg-base-100 shadow-2xl">
                 <table className="table">
                     <thead className='bg-base-300'>
-                        <tr className='text-secondary'>
+                        <tr className='bg-secondary text-secondary-content'>
                             <th></th>
                             <th>Recipient Name</th>
                             <th>Location</th>
                             <th>Donation <br />Date &Time</th>
                             <th>Blood Group</th>
                             <th>Status</th>
+                            <th>Donor Info</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>

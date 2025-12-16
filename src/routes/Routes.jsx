@@ -9,6 +9,8 @@ import CreateRequest from "../Pages/Dashboard/CreateRequest";
 import AllUsers from "../Pages/Dashboard/AllUsers";
 import PrivateRoute from "./PrivateRoute";
 import MyRequests from "../Pages/Dashboard/MyRequests";
+import Funding from "../Pages/Funding";
+import PaymentSuccess from "../Pages/PaymentSuccess";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +29,18 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Register></Register>
             },
+            {
+                path: '/funding',
+                element: <PrivateRoute><Funding></Funding></PrivateRoute>
+            },
+            {
+                path: '/payment-success',
+                element: <PaymentSuccess></PaymentSuccess>
+            },
+            {
+                path: '/payment-cancelled',
+                element: <PaymentSuccess></PaymentSuccess>
+            }
         ]
     },
     {
@@ -46,10 +60,10 @@ const router = createBrowserRouter([
                 element: <AllUsers />
             },
             {
-                path:'my-requests',
-                element:<MyRequests></MyRequests>
+                path: 'my-requests',
+                element: <MyRequests></MyRequests>
             }
-            
+
         ]
     }
 
