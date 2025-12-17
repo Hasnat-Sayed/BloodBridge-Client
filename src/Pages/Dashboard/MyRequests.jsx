@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Loading from '../../components/Loading';
+import { FaCheck, FaEdit, FaEye, FaTimes, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 const MyRequests = () => {
 
@@ -40,6 +43,39 @@ const MyRequests = () => {
         }
     }
 
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/delete-my-request/${id}`)
+                    .then(res => {
+                        // console.log(res.data);
+                        if (res.data.deletedCount == 1) {
+                            const filterData = myRequests.filter(req => req?._id != id)
+                            setMyRequests(filterData)
+
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Request has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            }
+        });
+    }
+
     const getStatusBadge = (status) => {
         const statusConfig = {
             pending: 'badge-warning',
@@ -62,10 +98,10 @@ const MyRequests = () => {
                     <thead className='bg-base-300'>
                         <tr className='bg-secondary text-secondary-content'>
                             <th></th>
-                            <th>Recipient Name</th>
+                            <th>Recipient <br /> Name</th>
                             <th>Location</th>
-                            <th>Donation <br />Date &Time</th>
-                            <th>Blood Group</th>
+                            <th>Donation <br />Date And Time</th>
+                            <th>Blood <br />Group</th>
                             <th>Status</th>
                             <th>Donor Info</th>
                             <th>Actions</th>
@@ -74,7 +110,7 @@ const MyRequests = () => {
                     <tbody>
                         {
                             myRequests.map((request, index) =>
-                                <tr key={request?._id} className="hover:bg-base-200">
+                                <tr key={request?._id}>
                                     <th>{(currentPage - 1) * itemsPerPage + index + 1}</th>
                                     <td><p className="font-bold">{request?.recipient_name}</p></td>
                                     <td>
@@ -87,13 +123,62 @@ const MyRequests = () => {
                                     </td>
 
                                     <td>
-                                        <p className='badge badge-outline badge-primary font-bold'>{request?.blood_group}</p>
+                                        <p className='badge badge-soft badge-outline badge-primary font-bold'>{request?.blood_group}</p>
                                     </td>
 
                                     <td>
-                                        <span className={`badge text-black ${getStatusBadge(request?.donation_status)}`}>
+                                        <span className={`badge badge-sm font-medium text-black ${getStatusBadge(request?.donation_status)}`}>
                                             {request?.donation_status}
                                         </span>
+                                    </td>
+
+                                    <td>
+                                        {request?.donation_status === 'inprogress' ? (
+                                            <div className="text-sm">
+                                                <p className="font-semibold">{request.donor_name}</p>
+                                                <p className="text-base-content/60">{request.donor_email}</p>
+                                            </div>
+                                        ) : (
+                                            <p className="text-base-content/40">N/A</p>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <div className="flex flex-wrap gap-2">
+
+                                            {request?.donation_status === 'inprogress' && (
+                                                <>
+                                                    <button // onClick={() => handleDone(request._id)}
+                                                        className="btn btn-sm btn-success"
+                                                        title="Mark as Done">
+                                                        <FaCheck className='text-lg' />
+                                                    </button>
+
+                                                    <button // onClick={() => handleCancel(request._id)}
+                                                        className="btn btn-sm btn-error "
+                                                        title="Cancel Request">
+                                                        <FaTimes className='text-lg' />
+                                                    </button>
+                                                </>
+                                            )}
+
+                                            <Link // to={`/dashboard/edit-request/${request._id}`}
+                                                className="btn btn-sm btn-accent"
+                                                title="Edit Request">
+                                                <FaEdit className='text-lg' />
+                                            </Link>
+
+                                            <button onClick={() => handleDelete(request?._id)}
+                                                className="btn btn-sm btn-warning"
+                                                title="Delete Request">
+                                                <FaTrash className='text-lg' />
+                                            </button>
+
+                                            <Link to={`/details/${request?._id}`}
+                                                className="btn btn-sm btn-primary"
+                                                title="View Details">
+                                                <FaEye className='text-lg' />
+                                            </Link>
+                                        </div>
                                     </td>
                                 </tr>
                             )
@@ -105,12 +190,11 @@ const MyRequests = () => {
             <div className='flex justify-center mt-12 gap-4'>
                 <button onClick={handlePrev} className="btn btn-accent">Prev</button>
                 {
-                    pages.map(page =>
-                        <button
+                    pages.map((page, index) =>
+                        <button key={index}
                             className={`btn btn-outline ${page === currentPage ?
                                 'bg-secondary text-white' : ''}`}
                             onClick={() => setCurrentPage(page)}>
-
                             {page}
                         </button>
                     )
