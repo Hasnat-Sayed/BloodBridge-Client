@@ -84,7 +84,7 @@ const DonationDetails = () => {
                             <div className="flex justify-start items-center gap-3">
                                 <FaMapMarkerAlt className="text-error text-2xl" />
                                 <div>
-                                    <p className="text-sm text-base-content/60 font-semibold">Location</p>
+                                    <p className="text-sm text-base-content/60 font-semibold">Recipient Location</p>
                                     <p className="text-lg font-bold text-secondary">
                                         {detail?.recipient_upazila}, {detail?.recipient_district}
                                     </p>

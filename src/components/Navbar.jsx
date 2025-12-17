@@ -26,7 +26,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-base-100 backdrop-blur-xl shadow-xl px-2 lg:px-20 border-b border-white/20  z-50">
+        <div className="navbar bg-secondary text-secondary-content shadow-2xl px-2 lg:px-20 border-b border-primary/80  z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden pl-0 pr-2">
@@ -47,7 +47,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className='flex items-center gap-2 group cursor-pointer'>
-                    <div className="rounded-lg bg-linear-to-br from-primary/30 to-secondary/30 p-2 group-hover:from-primary/40 group-hover:to-secondary/40 transition-all">
+                    <div className="rounded-lg bg-linear-to-br from-primary/30 to-secondary/10 p-2 group-hover:from-primary/60 group-hover:to-secondary/10 transition-all">
                         <img
                             src="https://img.icons8.com/?size=100&id=26115&format=png&color=E63946"
                             className="w-5 h-5 md:w-7 md:h-7  group-hover:scale-110 transition-transform"
@@ -56,17 +56,17 @@ const Navbar = () => {
                     </div>
                     <div>
                         <p className="text-xl md:text-2xl font-bold text-primary leading-none">
-                            Blood <span className="text-secondary">Bridge</span>
+                            Blood <span className="text-secondary-content">Bridge</span>
                         </p>
                     </div>
                 </div>
 
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 font-semibold">
+                <ul className="menu menu-horizontal px-1 font-medium">
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/pending-requests">Donation Requests</NavLink></li>
-                    <li><NavLink to="search">Search</NavLink></li>
+                    <li><NavLink to="/search">Search</NavLink></li>
                     {
                         user && (<>
                             <li><NavLink to="/funding">Funding</NavLink></li>
@@ -88,10 +88,10 @@ const Navbar = () => {
                                     <div
                                         tabIndex={0}
                                         role="button"
-                                        className="flex justify-center items-center gap-2 p-1 bg-base-100 rounded-full cursor-pointer shadow-lg hover:shadow-black/30 transition-all border border-base-300"
+                                        className="flex justify-center items-center gap-2 p-1 bg-accent rounded-full cursor-pointer shadow-lg hover:bg-accent/85 transition-all "
                                     >
                                         <div className="avatar">
-                                            <div className="w-10 rounded-full ring-3 ring-primary">
+                                            <div className="w-10 rounded-full ">
                                                 <img
                                                     src={user?.photoURL}
                                                     alt={user?.displayName}
@@ -106,7 +106,7 @@ const Navbar = () => {
                                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow-lg border border-base-300 font-bold"
                                     >
                                         <li>
-                                            <Link to="/dashboard" className="py-3">
+                                            <Link to="/dashboard" className="py-3 text-secondary">
                                                 <MdDashboard className='text-xl' />
                                                 Dashboard
                                             </Link>

@@ -26,8 +26,8 @@ const Funding = () => {
     const handleCheckout = (e) => {
         e.preventDefault();
         const donateAmount = e.target.donateAmount.value;
-        const donorName = e.target.donorName.value;
-        const donorEmail = user?.email;
+        const donorName = user?.displayName;
+        const donorEmail = e.target.email.value;
 
         const formData = {
             donateAmount,
@@ -121,9 +121,9 @@ const Funding = () => {
 
                                     <label className="label font-semibold text-secondary">Name</label>
                                     <input
-                                        name="donorName"
-                                        type="text"
-                                        defaultValue={user?.displayName}
+                                        name="email"
+                                        type="email"
+                                        defaultValue={user?.email}
                                         className="input w-full bg-base-200 rounded-xl"
                                         readOnly
                                     />

@@ -5,11 +5,14 @@ import { MdDashboard, MdArticle, MdLogout, MdMenu, MdClose, MdAddCircleOutline, 
 import { FaUserPlus, FaChartLine, FaUsers } from 'react-icons/fa';
 import { BiDonateBlood } from 'react-icons/bi';
 import { AuthContext } from '../provider/AuthProvider';
+import Loading from './Loading';
 
 const Aside = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const { role } = useContext(AuthContext)
+    const { role, roleLoading } = useContext(AuthContext)
 
+    if(roleLoading) return <Loading></Loading>
+ 
     return (
         <>
             <button

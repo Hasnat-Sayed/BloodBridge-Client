@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaHeartbeat } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md';
 import { Link } from 'react-router';
 
@@ -22,8 +23,8 @@ const Footer = () => {
                         <h6 className="footer-title text-lg text-primary mb-4">Quick Links</h6>
                         <div className="flex flex-col gap-2">
                             <Link to="/" className="link link-hover opacity-80 hover:opacity-100">Home</Link>
-                            <Link to="/donation-requests" className="link link-hover opacity-80 hover:opacity-100">Donation Requests</Link>
-                            <Link to="/search-donors" className="link link-hover opacity-80 hover:opacity-100">Search Donors</Link>
+                            <Link to="/pending-requests" className="link link-hover opacity-80 hover:opacity-100">Donation Requests</Link>
+                            <Link to="/search" className="link link-hover opacity-80 hover:opacity-100">Search</Link>
 
                         </div>
                     </nav>
@@ -61,7 +62,7 @@ const Footer = () => {
                                 target="_blank"
                                 className="link link-hover opacity-80 hover:opacity-100 hover:text-primary transition-all"
                             >
-                                <FaTwitter className='text-2xl' />
+                                <FaXTwitter className='text-2xl' />
                             </a>
                             <a
                                 href="https://instagram.com"
