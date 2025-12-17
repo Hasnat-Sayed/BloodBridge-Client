@@ -58,7 +58,7 @@ const MyRequests = () => {
                 <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary">My <span className='text-primary'>Requests</span></h3>
             </div>
             <div className="overflow-x-auto rounded-box border border-base-300 bg-base-100 shadow-2xl">
-                <table className="table">
+                <table className="table table-zebra ">
                     <thead className='bg-base-300'>
                         <tr className='bg-secondary text-secondary-content'>
                             <th></th>

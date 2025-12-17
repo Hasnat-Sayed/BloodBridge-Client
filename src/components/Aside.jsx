@@ -11,8 +11,8 @@ const Aside = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const { role, roleLoading } = useContext(AuthContext)
 
-    if(roleLoading) return <Loading></Loading>
- 
+    if (roleLoading) return <Loading></Loading>
+
     return (
         <>
             <button

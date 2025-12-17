@@ -119,7 +119,7 @@ const Funding = () => {
                                 </h3>
                                 <fieldset className="fieldset md:px-20">
 
-                                    <label className="label font-semibold text-secondary">Name</label>
+                                    <label className="label font-semibold text-secondary">Email</label>
                                     <input
                                         name="email"
                                         type="email"

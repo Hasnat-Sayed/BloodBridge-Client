@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { FaCalendarAlt, FaClock, FaEnvelope, FaHandHoldingHeart, FaHospital, FaInfoCircle, FaMapMarkerAlt, FaTint, FaUser } from 'react-icons/fa';
 import Loading from '../components/Loading';
+import { toast } from 'react-toastify';
 
 const DonationDetails = () => {
     const { user } = useContext(AuthContext);
@@ -11,21 +12,53 @@ const DonationDetails = () => {
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
+    const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
+
+    const fetchDetails = () => {
         axiosSecure.get(`/details/${id}`)
             .then(res => {
                 setDetail(res.data);
                 setLoading(false);
             })
             .catch(err => console.log(err));
+    }
+
+    useEffect(() => {
+        fetchDetails()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [axiosSecure, id])
 
-    console.log(detail)
 
-    
 
-    if(loading) return <Loading></Loading>
+    const handleConfirmDonation = (e) => {
+        e.preventDefault();
+        setLoading(true)
+        const form = e.target
+        const donor_name = form.name.value;
+        const donor_email = form.email.value;
+
+        const formData = {
+            donor_name,
+            donor_email
+        }
+        console.log(formData)
+
+        axiosSecure.patch(`/donate-blood/${detail?._id}`, formData)
+            .then(res => {
+                console.log(res.data);
+                toast.success("Donation Request Accepted.");
+                setLoading(false)
+                fetchDetails();
+
+            }).catch(err => console.log(err))
+
+        setShowModal(false);
+    };
+
+
+
+    if (loading) return <Loading></Loading>
 
     return (
         <div className="min-h-screen bg-base-200 py-10">
@@ -39,11 +72,11 @@ const DonationDetails = () => {
 
                 <div className="card bg-base-100 shadow-2xl border border-secondary/20 mb-6">
                     <div className="card-body">
-                        {/* Status Badge */}
+
                         <div className="flex justify-between items-center mb-3">
                             <h2 className="card-title text-3xl text-secondary">Request Information:</h2>
                             <span className={`badge badge-secondary badge-lg font-bold text-lg px-4 py-4`}>
-                                {detail?.donation_status}
+                                {detail?.donation_status?.toUpperCase()}
                             </span>
                         </div>
 
@@ -139,7 +172,7 @@ const DonationDetails = () => {
                         {detail?.donation_status === 'pending' && (
                             <div className="flex justify-center mt-2">
                                 <button
-                                    
+                                    onClick={() => setShowModal(true)}
                                     className="btn btn-primary btn-lg gap-2 px-12 rounded-lg hover:scale-105 transition-all transform duration-200"
                                 >
                                     <FaHandHoldingHeart className="text-2xl" />
@@ -150,6 +183,64 @@ const DonationDetails = () => {
                     </div>
                 </div>
             </div>
+
+
+            {showModal && (
+                <div className="modal modal-open">
+                    <form onSubmit={handleConfirmDonation}>
+                        <div className="modal-box max-w-md rounded-2xl">
+                            <h3 className="font-bold text-2xl text-secondary mb-4">Confirm Donation</h3>
+                            <p className="text-base-content/70 mb-6">
+                                Please confirm your details before proceeding with the donation.
+                            </p>
+
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="label font-semibold text-secondary">
+                                        Donor Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        defaultValue={user?.displayName}
+                                        className="input rounded-lg w-full bg-base-200"
+                                        readOnly
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="label font-semibold text-secondary">
+                                        Donor Email
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        defaultValue={user?.email}
+                                        className="input rounded-lg w-full bg-base-200"
+                                        readOnly
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mt-6 flex justify-between">
+                                <button
+                                    onClick={() => setShowModal(false)}
+                                    className="btn btn-ghost rounded-lg"
+                                >Cancel
+                                </button>
+
+                                <button
+                                    type='submit'
+                                    className="btn btn-primary rounded-lg">
+                                    <FaHandHoldingHeart />
+                                    Confirm Donation
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            )}
         </div>
     );
 };
