@@ -57,7 +57,7 @@ const AllUsers = () => {
 
     if (loading) return <Loading></Loading>
     return (
-        <div className='container bg-base-200 mx-auto pt-10 pb-16 px-4 lg:px-20 min-h-screen'>
+        <div className='container bg-base-200 mx-auto pt-6 pb-16 px-4 lg:px-20 min-h-screen'>
             <div className="text-center mb-10">
                 <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary">All <span className='text-primary'>Users</span></h3>
             </div>
@@ -65,7 +65,7 @@ const AllUsers = () => {
 
             <div className="overflow-x-auto rounded-xl shadow-2xl">
                 <table className="table">
-                    <thead className='text-primary text-xl bg-base-100'>
+                    <thead className='text-primary text-xl bg-secondary'>
                         <tr>
                             <th>User Info</th>
                             <th>Role</th>
@@ -99,7 +99,7 @@ const AllUsers = () => {
                                         </p>
                                     </td>
                                     <td>
-                                        <p className={`badge badge-outline text-lg font-semibold 
+                                        <p className={`badge badge-outline badge-soft text-lg font-semibold 
                                         ${user?.status == 'active' ? 'text-success' : 'text-error'}`}>
                                             {user?.status}
                                         </p>
@@ -113,12 +113,12 @@ const AllUsers = () => {
                                             {
                                                 user?.status == 'active' ? (
                                                     <button
-                                                        onClick={() => handleStatusChange(user?.email, 'blocked')} className="btn btn-error text-white btn-sm rounded-2xl">
-                                                        <FaBan className="text-sm" />Block
+                                                        onClick={() => handleStatusChange(user?.email, 'blocked')} className="btn btn-error text-white btn-sm">
+                                                        <FaBan className="text-lg" />Block
                                                     </button>) : (
                                                     <button
-                                                        onClick={() => handleStatusChange(user?.email, 'active')} className="btn btn-accent btn-sm rounded-2xl">
-                                                        <FaUnlock className="text-sm" />Unblock
+                                                        onClick={() => handleStatusChange(user?.email, 'active')} className="btn btn-accent btn-sm">
+                                                        <FaUnlock className="text-lg" />Unblock
                                                     </button>
                                                 )
                                             }
@@ -127,9 +127,9 @@ const AllUsers = () => {
                                             {user?.role === 'donor' && (
                                                 <button
                                                     onClick={() => handleMakeVolunteer(user?.email, 'volunteer')}
-                                                    className="btn btn-sm rounded-2xl btn-secondary "
+                                                    className="btn btn-sm btn-secondary "
                                                 >
-                                                    <FaUserCheck className="text-sm" />
+                                                    <FaUserCheck className="text-lg" />
                                                     Make Volunteer
                                                 </button>
                                             )}
@@ -138,9 +138,9 @@ const AllUsers = () => {
                                             {(user?.role == 'donor' || user?.role == 'volunteer') && (
                                                 <button
                                                     onClick={() => handleMakeAdmin(user?.email, 'admin')}
-                                                    className="btn btn-sm btn-success rounded-2xl"
+                                                    className="btn btn-sm btn-success"
                                                 >
-                                                    <FaUserShield className="text-sm" />
+                                                    <FaUserShield className="text-lg" />
                                                     Make Admin
                                                 </button>
                                             )}
