@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../provider/AuthProvider';
+import { AuthContext } from '../../../provider/AuthProvider';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const CreateRequest = () => {
 

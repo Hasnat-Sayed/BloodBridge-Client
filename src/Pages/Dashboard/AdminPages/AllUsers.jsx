@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { AuthContext } from '../../provider/AuthProvider';
-import Loading from '../../components/Loading';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { AuthContext } from '../../../provider/AuthProvider';
+import Loading from '../../../components/Loading';
 import { Link } from 'react-router';
 import { FaBan, FaUnlock, FaUserCheck, FaUserShield } from 'react-icons/fa';
 
@@ -19,11 +19,11 @@ const AllUsers = () => {
             })
             .catch(err => console.log(err));
     }
-    
+
 
     useEffect(() => {
         fetchUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [axiosSecure])
 
 

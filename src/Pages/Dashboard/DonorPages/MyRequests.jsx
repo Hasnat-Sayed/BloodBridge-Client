@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import Loading from '../../components/Loading';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Loading from '../../../components/Loading';
 import { FaCheck, FaEdit, FaEye, FaTimes, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
@@ -53,7 +53,7 @@ const MyRequests = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
-            
+
             if (result.isConfirmed) {
                 axiosSecure.delete(`/delete-my-request/${id}`)
                     .then(res => {
@@ -161,7 +161,7 @@ const MyRequests = () => {
                                                 </>
                                             )}
 
-                                            <Link // to={`/dashboard/edit-request/${request._id}`}
+                                            <Link to={`/dashboard/edit-my-request/${request?._id}`}
                                                 className="btn btn-sm btn-accent"
                                                 title="Edit Request">
                                                 <FaEdit className='text-lg' />

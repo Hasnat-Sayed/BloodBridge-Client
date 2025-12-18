@@ -5,15 +5,16 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import MainDashboard from "../Pages/Dashboard/MainDashboard";
-import CreateRequest from "../Pages/Dashboard/CreateRequest";
-import AllUsers from "../Pages/Dashboard/AllUsers";
+import CreateRequest from "../Pages/Dashboard/DonorPages/CreateRequest";
+import AllUsers from "../Pages/Dashboard/AdminPages/AllUsers";
 import PrivateRoute from "./PrivateRoute";
-import MyRequests from "../Pages/Dashboard/MyRequests";
+import MyRequests from "../Pages/Dashboard/DonorPages/MyRequests";
 import Funding from "../Pages/Funding";
 import PaymentSuccess from "../Pages/PaymentSuccess";
 import SearchRequest from "../Pages/SearchRequest";
 import DonationRequests from "../Pages/DonationRequests";
 import DonationDetails from "../Pages/DonationDetails";
+import EditRequest from "../Pages/Dashboard/DonorPages/EditRequest";
 
 const router = createBrowserRouter([
     {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
             {
                 path: 'my-requests',
                 element: <MyRequests></MyRequests>
+            },
+            {
+                path: 'edit-my-request/:id',
+                element: <EditRequest></EditRequest>
             }
 
         ]
