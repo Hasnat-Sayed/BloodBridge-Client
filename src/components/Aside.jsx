@@ -144,20 +144,27 @@ const Aside = () => {
                             )
                         }
 
+                        {/* volunteer links */}
+                        {
+                            role == 'volunteer' && (
+                                <>
+                                    <li>
+                                        <NavLink
+                                            to="/dashboard/all-requests-volunteer"
+                                            onClick={() => setIsSidebarOpen(false)}
+                                            className={({ isActive }) =>
+                                                `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
+                                            }
+                                        >
+                                            <MdArticle className="text-xl" />
+                                            All Donation Request
+                                        </NavLink>
+                                    </li>
+                                </>
 
+                            )
+                        }
 
-                        <li>
-                            <NavLink
-                                to="/dashboard/statistics"
-                                onClick={() => setIsSidebarOpen(false)}
-                                className={({ isActive }) =>
-                                    `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
-                                }
-                            >
-                                <FaChartLine className="text-xl" />
-                                Statistics
-                            </NavLink>
-                        </li>
                     </ul>
 
 
