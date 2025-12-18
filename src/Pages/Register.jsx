@@ -77,7 +77,6 @@ const Register = () => {
 
         const formData = {
             email,
-            pass,
             name,
             mainPhotoUrl,
             blood,
@@ -91,9 +90,9 @@ const Register = () => {
                 .then((userCredential) => {
                     updateProfile(auth.currentUser, {
                         displayName: name, photoURL: mainPhotoUrl
-                    }).then(() => {
+                    }).then(async () => {
                         setUser(userCredential.user)
-                        axios.post('http://localhost:5000/users', formData)
+                        await axios.post('http://localhost:5000/users', formData)
                             .then(res => {
                                 console.log(res.data);
                             })

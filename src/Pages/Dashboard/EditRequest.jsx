@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import axios from 'axios';
@@ -7,9 +7,6 @@ import Swal from 'sweetalert2';
 import Loading from '../../components/Loading';
 
 const EditRequest = () => {
-
-    const { role } = useContext(AuthContext);
-
     const [upazilas, setUpazilas] = useState([])
     const [districts, setDistricts] = useState([])
 
@@ -93,11 +90,7 @@ const EditRequest = () => {
                     icon: "success",
                     draggable: true
                 });
-                if(role == 'admin'){
-                    navigation('/dashboard/all-requests-admin')
-                }else{
-                    navigation('/dashboard/my-requests')
-                }
+                navigation(-1);
                 
             })
             .catch(err => {

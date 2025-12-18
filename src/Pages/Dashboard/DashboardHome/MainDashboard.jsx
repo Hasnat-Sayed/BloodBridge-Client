@@ -6,19 +6,20 @@ import DonorHome from './DonorHome';
 import VolunteerHome from './VolunteerHome';
 
 const MainDashboard = () => {
-    const { role, roleLoading } = useContext(AuthContext)
-    if (roleLoading) {
+    const { role, roleLoading, loading } = useContext(AuthContext)
+    if (loading || roleLoading) {
         return <Loading></Loading>
     }
-    if (role === 'admin') {
+    if (role == 'admin') {
         return <AdminHome></AdminHome>
     }
-    else if (role === 'donor') {
+    if (role == 'donor') {
         return <DonorHome></DonorHome>
     }
-    else {
+    if(role == 'volunteer'){
         return <VolunteerHome></VolunteerHome>
     }
+    return <Loading />;
 };
 
 export default MainDashboard;

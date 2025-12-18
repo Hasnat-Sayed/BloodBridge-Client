@@ -101,7 +101,7 @@ const MyRequests = () => {
     if (loading) return <Loading></Loading>
 
     return (
-        <div className='container bg-base-200 mx-auto pt-6 pb-16 min-h-screen'>
+        <div className='container bg-base-200 mx-auto md:pt-6 pb-16 min-h-screen'>
             <div className="text-center mb-5">
                 <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary">My <span className='text-primary'>Requests</span></h3>
             </div>

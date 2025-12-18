@@ -3,15 +3,14 @@ import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { MdDashboard, MdArticle, MdLogout, MdMenu, MdClose, MdAddCircleOutline, MdHome } from 'react-icons/md';
 import { FaUserPlus, FaChartLine, FaUsers } from 'react-icons/fa';
-import { BiDonateBlood } from 'react-icons/bi';
 import { AuthContext } from '../provider/AuthProvider';
 import Loading from './Loading';
 
 const Aside = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const { role, roleLoading } = useContext(AuthContext)
+    const { role, roleLoading, loading } = useContext(AuthContext)
 
-    if (roleLoading) return <Loading></Loading>
+    if (loading || roleLoading) return <Loading></Loading>
 
     return (
         <>
