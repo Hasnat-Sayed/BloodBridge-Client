@@ -11,23 +11,27 @@ const MyRequests = () => {
     const [totalRequest, setTotalRequest] = useState(0);
     const [itemsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
-
     const [loading, setLoading] = useState(true)
 
     const axiosSecure = useAxiosSecure()
-    useEffect(() => {
-        axiosSecure.get(`/my-request?page=${currentPage - 1}&size=${itemsPerPage}`)
+
+    const [filter, setFilter] = useState('');
+
+    const fetchRequest = () => {
+        axiosSecure.get(`/my-request?page=${currentPage - 1}&size=${itemsPerPage}&status=${filter}`)
             .then(res => {
                 setMyRequests(res.data.request)
                 setTotalRequest(res.data.totalRequest)
-
                 setLoading(false);
 
             })
-    }, [axiosSecure, currentPage, itemsPerPage])
+    }
 
-    // console.log(myRequests)
-    // console.log(totalRequest)
+    useEffect(() => {
+        fetchRequest()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [axiosSecure, currentPage, itemsPerPage, filter])
+
 
     const numberOfPages = Math.ceil(totalRequest / itemsPerPage)
     const pages = [...Array(numberOfPages).keys()].map(e => e + 1)
@@ -59,8 +63,7 @@ const MyRequests = () => {
                     .then(res => {
                         // console.log(res.data);
                         if (res.data.deletedCount == 1) {
-                            const filterData = myRequests.filter(req => req?._id != id)
-                            setMyRequests(filterData)
+                            fetchRequest()
 
                             Swal.fire({
                                 title: "Deleted!",
@@ -74,6 +77,15 @@ const MyRequests = () => {
                     })
             }
         });
+    }
+
+    const handleDoneCancel = (id, status) => {
+        axiosSecure.patch(`/update/request/status?id=${id}&status=${status}`)
+            .then(res => {
+                console.log(res.data);
+                Swal.fire("Success", `Marked as ${status}`, "success")
+                fetchRequest();
+            })
     }
 
     const getStatusBadge = (status) => {
@@ -90,9 +102,21 @@ const MyRequests = () => {
 
     return (
         <div className='container bg-base-200 mx-auto pt-6 pb-16 min-h-screen'>
-            <div className="text-center mb-10">
+            <div className="text-center mb-5">
                 <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary">My <span className='text-primary'>Requests</span></h3>
             </div>
+
+
+            <select onChange={(e) => setFilter(e.target.value)} className="select select-bordered rounded-2xl mb-5"  defaultValue="">
+                <option  disabled value="">Filter by Status</option>
+                <option value="">All Requests</option>
+                <option value="pending">Pending</option>
+                <option value="inprogress">In Progress</option>
+                <option value="done">Done</option>
+                <option value="canceled">Canceled</option>
+            </select>
+
+
             <div className="overflow-x-auto rounded-box border border-base-300 bg-base-100 shadow-2xl">
                 <table className="table table-zebra ">
                     <thead className='bg-base-300'>
@@ -147,13 +171,13 @@ const MyRequests = () => {
 
                                             {request?.donation_status === 'inprogress' && (
                                                 <>
-                                                    <button // onClick={() => handleDone(request._id)}
+                                                    <button onClick={() => handleDoneCancel(request._id, 'done')}
                                                         className="btn btn-sm btn-success"
                                                         title="Mark as Done">
                                                         <FaCheck className='text-lg' />
                                                     </button>
 
-                                                    <button // onClick={() => handleCancel(request._id)}
+                                                    <button onClick={() => handleDoneCancel(request._id, 'canceled')}
                                                         className="btn btn-sm btn-error "
                                                         title="Cancel Request">
                                                         <FaTimes className='text-lg' />
