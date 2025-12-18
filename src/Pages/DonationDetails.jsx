@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { FaCalendarAlt, FaClock, FaEnvelope, FaHandHoldingHeart, FaHospital, FaInfoCircle, FaMapMarkerAlt, FaTint, FaUser } from 'react-icons/fa';
 import Loading from '../components/Loading';
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const DonationDetails = () => {
     const { user } = useContext(AuthContext);
@@ -47,7 +47,7 @@ const DonationDetails = () => {
         axiosSecure.patch(`/donate-blood/${detail?._id}`, formData)
             .then(res => {
                 console.log(res.data);
-                toast.success("Donation Request Accepted.");
+                Swal.fire("Success", "Donation Request Accepted", "success")
                 setLoading(false)
                 fetchDetails();
 

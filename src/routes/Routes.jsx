@@ -15,10 +15,13 @@ import SearchRequest from "../Pages/SearchRequest";
 import DonationRequests from "../Pages/DonationRequests";
 import DonationDetails from "../Pages/DonationDetails";
 import EditRequest from "../Pages/Dashboard/DonorPages/EditRequest";
+import Profile from "../Pages/Dashboard/Profile";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
+        errorElement:<ErrorPage></ErrorPage>,
         element: <RootLayout></RootLayout>,
         children: [
             {
@@ -82,6 +85,10 @@ const router = createBrowserRouter([
             {
                 path: 'edit-my-request/:id',
                 element: <EditRequest></EditRequest>
+            },
+            {
+                path: 'profile',
+                element: <Profile></Profile>
             }
 
         ]

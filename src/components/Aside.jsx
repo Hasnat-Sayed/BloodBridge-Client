@@ -64,6 +64,19 @@ const Aside = () => {
                                 Dashboard
                             </NavLink>
                         </li>
+                        
+                        <li>
+                            <NavLink
+                                to="/dashboard/profile"
+                                onClick={() => setIsSidebarOpen(false)}
+                                className={({ isActive }) =>
+                                    `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
+                                }
+                            >
+                                <FaUserPlus className="text-xl" />
+                                My Profile
+                            </NavLink>
+                        </li>
 
 
                         {/* donor links */}
@@ -117,18 +130,7 @@ const Aside = () => {
                         }
 
 
-                        <li>
-                            <NavLink
-                                to="/dashboard/content-management"
-                                onClick={() => setIsSidebarOpen(false)}
-                                className={({ isActive }) =>
-                                    `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
-                                }
-                            >
-                                <MdArticle className="text-xl" />
-                                Content Management
-                            </NavLink>
-                        </li>
+                        
                         <li>
                             <NavLink
                                 to="/dashboard/statistics"
@@ -139,18 +141,6 @@ const Aside = () => {
                             >
                                 <FaChartLine className="text-xl" />
                                 Statistics
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/dashboard/profile"
-                                onClick={() => setIsSidebarOpen(false)}
-                                className={({ isActive }) =>
-                                    `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
-                                }
-                            >
-                                <FaUserPlus className="text-xl" />
-                                My Profile
                             </NavLink>
                         </li>
                     </ul>

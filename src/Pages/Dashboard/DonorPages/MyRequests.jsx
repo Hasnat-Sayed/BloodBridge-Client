@@ -107,8 +107,8 @@ const MyRequests = () => {
             </div>
 
 
-            <select onChange={(e) => setFilter(e.target.value)} className="select select-bordered rounded-2xl mb-5"  defaultValue="">
-                <option  disabled value="">Filter by Status</option>
+            <select onChange={(e) => setFilter(e.target.value)} className="select select-bordered rounded-2xl mb-5" defaultValue="">
+                <option disabled value="">Filter by Status</option>
                 <option value="">All Requests</option>
                 <option value="pending">Pending</option>
                 <option value="inprogress">In Progress</option>
@@ -120,21 +120,22 @@ const MyRequests = () => {
             <div className="overflow-x-auto rounded-box border border-base-300 bg-base-100 shadow-2xl">
                 <table className="table table-zebra ">
                     <thead className='bg-base-300'>
-                        <tr className='bg-secondary text-secondary-content'>
+                        <tr className='bg-secondary text-sm text-secondary-content'>
                             <th></th>
                             <th>Recipient <br /> Name</th>
                             <th>Location</th>
                             <th>Donation <br />Date And Time</th>
                             <th>Blood <br />Group</th>
-                            <th>Status</th>
+                            <th>Donation <br />Status</th>
                             <th>Donor Info</th>
+                            <th>Done /<br />Cancel</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             myRequests.map((request, index) =>
-                                <tr key={request?._id}>
+                                <tr key={request?._id} className='text-xs'>
                                     <th>{(currentPage - 1) * itemsPerPage + index + 1}</th>
                                     <td><p className="font-bold">{request?.recipient_name}</p></td>
                                     <td>
@@ -147,7 +148,7 @@ const MyRequests = () => {
                                     </td>
 
                                     <td>
-                                        <p className='badge badge-soft badge-outline badge-primary font-bold'>{request?.blood_group}</p>
+                                        <p className='badge badge-soft badge-outline badge-primary font-bold badge-sm'>{request?.blood_group}</p>
                                     </td>
 
                                     <td>
@@ -158,7 +159,7 @@ const MyRequests = () => {
 
                                     <td>
                                         {request?.donation_status === 'inprogress' ? (
-                                            <div className="text-sm">
+                                            <div className="text-xs">
                                                 <p className="font-semibold">{request.donor_name}</p>
                                                 <p className="text-base-content/60">{request.donor_email}</p>
                                             </div>
@@ -167,40 +168,49 @@ const MyRequests = () => {
                                         )}
                                     </td>
                                     <td>
-                                        <div className="flex flex-wrap gap-2">
 
-                                            {request?.donation_status === 'inprogress' && (
+                                        <div className="flex flex-wrap gap-2">
+                                            {request?.donation_status === 'inprogress' ? (
                                                 <>
                                                     <button onClick={() => handleDoneCancel(request._id, 'done')}
-                                                        className="btn btn-sm btn-success"
+                                                        className="btn btn-xs btn-success"
                                                         title="Mark as Done">
-                                                        <FaCheck className='text-lg' />
+                                                        <FaCheck className='text-base' />
                                                     </button>
 
                                                     <button onClick={() => handleDoneCancel(request._id, 'canceled')}
-                                                        className="btn btn-sm btn-error "
+                                                        className="btn btn-xs btn-error "
                                                         title="Cancel Request">
-                                                        <FaTimes className='text-lg' />
+                                                        <FaTimes className='text-base' />
                                                     </button>
                                                 </>
-                                            )}
+                                            ) : (<p className="text-base-content/40">N/A</p>)
+                                            }
+                                        </div>
+
+
+
+                                    </td>
+                                    <td>
+                                        <div className="flex flex-wrap gap-2">
+
 
                                             <Link to={`/dashboard/edit-my-request/${request?._id}`}
-                                                className="btn btn-sm btn-accent"
+                                                className="btn btn-xs btn-accent"
                                                 title="Edit Request">
-                                                <FaEdit className='text-lg' />
+                                                <FaEdit className='text-base' />
                                             </Link>
 
                                             <button onClick={() => handleDelete(request?._id)}
-                                                className="btn btn-sm btn-warning"
+                                                className="btn btn-xs btn-warning"
                                                 title="Delete Request">
-                                                <FaTrash className='text-lg' />
+                                                <FaTrash className='text-base' />
                                             </button>
 
                                             <Link to={`/details/${request?._id}`}
-                                                className="btn btn-sm btn-primary"
+                                                className="btn btn-xs btn-primary"
                                                 title="View Details">
-                                                <FaEye className='text-lg' />
+                                                <FaEye className='text-base' />
                                             </Link>
                                         </div>
                                     </td>
