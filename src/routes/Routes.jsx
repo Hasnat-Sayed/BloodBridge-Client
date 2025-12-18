@@ -14,14 +14,15 @@ import PaymentSuccess from "../Pages/PaymentSuccess";
 import SearchRequest from "../Pages/SearchRequest";
 import DonationRequests from "../Pages/DonationRequests";
 import DonationDetails from "../Pages/DonationDetails";
-import EditRequest from "../Pages/Dashboard/DonorPages/EditRequest";
+import EditRequest from "../Pages/Dashboard/EditRequest";
 import Profile from "../Pages/Dashboard/Profile";
 import ErrorPage from "../Pages/ErrorPage";
+import AllRequestAdmin from "../Pages/Dashboard/AdminPages/AllRequestAdmin";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        errorElement:<ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         element: <RootLayout></RootLayout>,
         children: [
             {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
             {
                 path: 'all-users',
                 element: <AllUsers />
+            },
+            {
+                path: 'all-requests-admin',
+                element: <AllRequestAdmin />
             },
             {
                 path: 'my-requests',

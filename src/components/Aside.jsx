@@ -64,7 +64,7 @@ const Aside = () => {
                                 Dashboard
                             </NavLink>
                         </li>
-                        
+
                         <li>
                             <NavLink
                                 to="/dashboard/profile"
@@ -114,23 +114,38 @@ const Aside = () => {
                         {/* admin links */}
                         {
                             role == 'admin' && (
-                                <li>
-                                    <NavLink
-                                        to="/dashboard/all-users"
-                                        onClick={() => setIsSidebarOpen(false)}
-                                        className={({ isActive }) =>
-                                            `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
-                                        }
-                                    >
-                                        <FaUsers className="text-xl" />
-                                        All Users
-                                    </NavLink>
-                                </li>
+                                <>
+                                    <li>
+                                        <NavLink
+                                            to="/dashboard/all-users"
+                                            onClick={() => setIsSidebarOpen(false)}
+                                            className={({ isActive }) =>
+                                                `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
+                                            }
+                                        >
+                                            <FaUsers className="text-xl" />
+                                            All Users
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink
+                                            to="/dashboard/all-requests-admin"
+                                            onClick={() => setIsSidebarOpen(false)}
+                                            className={({ isActive }) =>
+                                                `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
+                                            }
+                                        >
+                                            <MdArticle className="text-xl" />
+                                            All Donation Request
+                                        </NavLink>
+                                    </li>
+                                </>
+
                             )
                         }
 
 
-                        
+
                         <li>
                             <NavLink
                                 to="/dashboard/statistics"

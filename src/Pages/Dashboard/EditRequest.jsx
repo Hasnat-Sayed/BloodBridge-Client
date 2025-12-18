@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../provider/AuthProvider';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { AuthContext } from '../../provider/AuthProvider';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
-import Loading from '../../../components/Loading';
+import Loading from '../../components/Loading';
 
 const EditRequest = () => {
 
-    const { user } = useContext(AuthContext);
+    const { role } = useContext(AuthContext);
 
     const [upazilas, setUpazilas] = useState([])
     const [districts, setDistricts] = useState([])
@@ -93,14 +93,19 @@ const EditRequest = () => {
                     icon: "success",
                     draggable: true
                 });
-                navigation('/dashboard/my-requests')
+                if(role == 'admin'){
+                    navigation('/dashboard/all-requests-admin')
+                }else{
+                    navigation('/dashboard/my-requests')
+                }
+                
             })
             .catch(err => {
                 console.log(err);
             })
     }
 
-    if(loading) return <Loading></Loading>
+    if (loading) return <Loading></Loading>
 
     return (
         <div className="max-w-3xl mx-auto py-10 px-10 lg:px-20 bg-base-100 border border-gray-400 rounded-2xl shadow-2xl">
@@ -119,7 +124,7 @@ const EditRequest = () => {
                     <input
                         type="text"
                         name="requester_name"
-                        value={user?.displayName || ''}
+                        value={req?.requester_name || ''}
                         className="input input-bordered w-full rounded-xl bg-base-200"
                         placeholder="Requester Name"
                         readOnly
@@ -131,7 +136,7 @@ const EditRequest = () => {
                     <input
                         type="email"
                         name="requester_email"
-                        value={user?.email || ''}
+                        value={req?.requester_email || ''}
                         className="input input-bordered w-full rounded-xl bg-base-200"
                         placeholder="Requester Email"
                         readOnly
