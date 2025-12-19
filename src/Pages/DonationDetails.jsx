@@ -7,7 +7,7 @@ import Loading from '../components/Loading';
 import Swal from 'sweetalert2';
 
 const DonationDetails = () => {
-    const { user } = useContext(AuthContext);
+    const { user, role } = useContext(AuthContext);
     const [detail, setDetail] = useState([]);
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
@@ -26,7 +26,7 @@ const DonationDetails = () => {
 
     useEffect(() => {
         fetchDetails()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [axiosSecure, id])
 
 
@@ -55,7 +55,15 @@ const DonationDetails = () => {
 
         setShowModal(false);
     };
-
+    const getStatusBadge = (status) => {
+        const statusConfig = {
+            pending: 'badge-error',
+            inprogress: 'badge-info',
+            done: 'badge-success',
+            canceled: 'badge-warning'
+        };
+        return statusConfig[status] || 'badge-ghost';
+    };
 
 
     if (loading) return <Loading></Loading>
@@ -75,7 +83,7 @@ const DonationDetails = () => {
 
                         <div className="flex justify-between items-center mb-3">
                             <h2 className="card-title text-3xl text-secondary">Request Information:</h2>
-                            <span className={`badge badge-secondary badge-lg font-bold text-lg px-4 py-4`}>
+                            <span className={`badge ${getStatusBadge(detail?.donation_status)}  badge-lg font-bold text-lg px-4 py-4`}>
                                 {detail?.donation_status?.toUpperCase()}
                             </span>
                         </div>
@@ -169,7 +177,7 @@ const DonationDetails = () => {
                             </div>
                         </div>
 
-                        {detail?.donation_status === 'pending' && (
+                        {detail?.donation_status === 'pending' && role === 'donor' && (
                             <div className="flex justify-center mt-2">
                                 <button
                                     onClick={() => setShowModal(true)}

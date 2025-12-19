@@ -13,12 +13,13 @@ const Login = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
-    // const [email, setEmail] = useState("");
+    const [btnLoading, setBtnLoading] = useState(false);
     const [show, setShow] = useState(false);
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setBtnLoading(true)
         const email = e.target.email.value;
         const pass = e.target.password.value;
         signInWithEmailAndPassword(auth, email, pass)
@@ -28,6 +29,7 @@ const Login = () => {
                 setUser(user);
                 setLoading(false)
                 toast.success("SignIn Successful")
+                setBtnLoading(false);
                 navigate(location.state || "/")
             })
             .catch((e) => {
@@ -85,7 +87,7 @@ const Login = () => {
                             />
 
                             <span onClick={() => setShow(!show)} className='absolute right-2 top-7.5 cursor-pointer z-50 text-lg'>
-                                {show ? <FaEye  /> : <FaRegEyeSlash />}</span>
+                                {show ? <FaEye /> : <FaRegEyeSlash />}</span>
                         </div>
 
 
@@ -94,8 +96,12 @@ const Login = () => {
                         </div> */}
 
 
-                        <button type="submit" className="btn btn-primary mt-3">
-                            Login
+                        <button type="submit" className="btn btn-primary mt-3" disabled={btnLoading}>
+                            {btnLoading ? (
+                                <span className="loading loading-spinner text-primary loading-sm"></span>
+                            ) : (
+                                'Login'
+                            )}
                         </button>
 
                         {/* <div className="flex items-center justify-center gap-2 my-2">

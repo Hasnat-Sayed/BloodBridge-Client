@@ -58,8 +58,8 @@ const Featured = () => {
     ];
 
     return (
-        <div className="bg-linear-to-b from-base-300 to-base-200 ">
-            <div className="container bg-base-200 mx-auto px-4 py-16 lg:px-20 min-h-screen">
+        <div className="bg-linear-to-b from-bg-base-300 to-bg-base-200 ">
+            <div className="container mx-auto px-4 py-16 lg:px-20 min-h-screen">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
                         Why Choose <span className="text-primary">Blood Bridge?</span>

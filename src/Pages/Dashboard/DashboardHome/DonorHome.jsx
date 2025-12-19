@@ -84,10 +84,10 @@ const DonorHome = () => {
 
     return (
         <div className="container mx-auto">
-            <div className="card lg:card-side flex-col-reverse lg:flex-row bg-base-100 shadow-2xl rounded-2xl">
+            <div className="card lg:card-side flex-col-reverse lg:flex-row bg-base-100 shadow-2xl rounded-3xl">
                 <div className="card-body text-center lg:text-left text-3xl md:text-4xl lg:text-5xl">
                     <h2 className=" font-semibold text-secondary">
-                        Welcome,
+                        Welcome back 👋
                     </h2>
                     <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-2">
                         {user?.displayName}

@@ -7,13 +7,13 @@ import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaRegEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
-import { TbFidgetSpinner } from 'react-icons/tb';
 
 const Register = () => {
 
-    const { user, loading, registerWithEmailAndPass, setUser } = useContext(AuthContext);
+    const { user, registerWithEmailAndPass, setUser } = useContext(AuthContext);
     const [error, setError] = useState("");
     const [show, setShow] = useState(false)
+    const [btnLoading, setBtnLoading] = useState(false);
     const navigate = useNavigate();
 
 
@@ -39,6 +39,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setBtnLoading(true)
         const email = e.target.email.value;
         const pass = e.target.password.value;
 
@@ -99,8 +100,9 @@ const Register = () => {
                             .catch(err => {
                                 console.log(err);
                             })
-                        toast.success("Registration Successful")
-                        navigate("/")
+                        toast.success("Registration Successful");
+                        setBtnLoading(false);
+                        navigate("/");
                     }).catch((error) => {
                         console.log(error)
                         toast.error(error.message);
@@ -218,9 +220,9 @@ const Register = () => {
                             <p className="text-red-500 text-sm mt-1">{error}</p>
                         )}
 
-                        <button type="submit" className="btn btn-primary mt-3">
-                            {loading ? (
-                                <TbFidgetSpinner className='animate-spin m-auto' />
+                        <button type="submit" className="btn btn-primary mt-3 " disabled={btnLoading}>
+                            {btnLoading ? (
+                                <span className="loading loading-spinner text-primary loading-sm"></span>
                             ) : (
                                 'Register'
                             )}

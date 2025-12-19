@@ -48,16 +48,16 @@ const Funding = () => {
     return (
 
         <div className='bg-base-200'>
-            <div className="container mx-auto min-h-screen pb-16">
-                <div className="bg-linear-to-b from-primary to-secondary text-primary-content py-10">
-                    <div className="px-4 text-center">
-                        <FaHeart className="text-6xl mx-auto mb-4 animate-pulse" />
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">Support Blood Bridge</h1>
-                        <p className="text-xl mb-6 max-w-3xl mx-auto text-gray-300">
-                            Your contribution helps us save lives by connecting donors with those in need
-                        </p>
-                    </div>
+            <div className="bg-linear-to-b from-primary to-secondary text-primary-content py-10">
+                <div className="px-4 text-center">
+                    <FaHeart className="text-6xl mx-auto mb-4 animate-pulse" />
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Support Blood Bridge</h1>
+                    <p className="text-xl mb-6 max-w-3xl mx-auto text-gray-300">
+                        Your contribution helps us save lives by connecting donors with those in need
+                    </p>
                 </div>
+            </div>
+            <div className="container mx-auto min-h-screen pb-16">
 
                 <div className=" bg-base-200 mx-auto py-16 px-4 lg:px-20">
                     <div className="flex justify-between w-full  flex-col lg:flex-row gap-20">

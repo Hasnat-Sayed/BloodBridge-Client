@@ -24,10 +24,10 @@ const VolunteerHome = () => {
     if (loading) return <Loading></Loading>
     return (
         <div className="container mx-auto">
-            <div className="card lg:card-side flex-col-reverse lg:flex-row bg-base-100 shadow-2xl rounded-2xl">
+            <div className="card lg:card-side flex-col-reverse lg:flex-row bg-base-100 shadow-2xl rounded-3xl">
                 <div className="card-body text-center lg:text-left text-3xl md:text-4xl lg:text-5xl">
                     <h2 className=" font-semibold text-secondary">
-                        Welcome,
+                        Welcome back 👋
                     </h2>
                     <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-2">
                         {user?.displayName}
@@ -45,9 +45,13 @@ const VolunteerHome = () => {
                 </figure>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            <div className="text-center mt-14">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary">Dashboard <span className='text-primary'> Overview</span></h3>
+            </div>
 
-                <div className="card bg-base-100 shadow-xl border-4 border-primary rounded-2xl hover:shadow-2xl hover:shadow-red-300 hover:-translate-y-2 transition-all duration-300 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+
+                <div className="card bg-base-100 shadow-2xl  rounded-2xl hover:shadow-2xl hover:shadow-red-300 hover:-translate-y-2 transition-all duration-300 ">
                     <div className="card-body items-center text-center">
                         <FaUsers className="text-7xl text-primary" />
                         <h2 className="text-4xl font-bold my-3">
@@ -59,7 +63,7 @@ const VolunteerHome = () => {
                     </div>
                 </div>
 
-                <div className="card bg-base-100 shadow-xl border-4 border-primary rounded-2xl hover:shadow-2xl hover:shadow-red-300 hover:-translate-y-2 transition-all duration-300 ">
+                <div className="card bg-base-100 shadow-2xl  rounded-2xl hover:shadow-2xl hover:shadow-red-300 hover:-translate-y-2 transition-all duration-300 ">
                     <div className="card-body items-center text-center">
                         <FaDonate className="text-7xl text-primary" />
                         <h2 className="text-4xl font-bold my-3">
@@ -71,14 +75,14 @@ const VolunteerHome = () => {
                     </div>
                 </div>
 
-                <div className="card bg-base-100 shadow-xl border-4 border-primary rounded-2xl hover:shadow-2xl hover:shadow-red-300 hover:-translate-y-2 transition-all duration-300 ">
+                <div className="card bg-base-100 shadow-2xl  rounded-2xl hover:shadow-2xl hover:shadow-red-300 hover:-translate-y-2 transition-all duration-300 ">
                     <div className="card-body items-center text-center">
                         <FaTint className="text-7xl text-primary" />
                         <h2 className="text-4xl font-bold my-3">
                             {stats?.totalRequest}
                         </h2>
                         <p className="text-accent text-2xl  font-semibold">
-                            Blood Requestsssss
+                            Blood Requests
                         </p>
                     </div>
                 </div>
