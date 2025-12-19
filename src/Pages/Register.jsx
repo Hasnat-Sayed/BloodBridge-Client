@@ -11,7 +11,7 @@ import { TbFidgetSpinner } from 'react-icons/tb';
 
 const Register = () => {
 
-    const { user, loading, registerWithEmailAndPass, setUser, signInWithGoogle, setLoading } = useContext(AuthContext);
+    const { user, loading, registerWithEmailAndPass, setUser } = useContext(AuthContext);
     const [error, setError] = useState("");
     const [show, setShow] = useState(false)
     const navigate = useNavigate();
@@ -117,25 +117,25 @@ const Register = () => {
 
 
     }
-    const handleGoogleUp = () => {
-        signInWithGoogle()
-            .then((res) => {
-                setLoading(false);
-                setUser(res.user);
-                toast.success("Registration Successful");
-                navigate("/")
-            })
-            .catch((e) => {
-                console.log(e);
-                toast.error(e.message);
-            });
+    // const handleGoogleUp = () => {
+    //     signInWithGoogle()
+    //         .then((res) => {
+    //             setLoading(false);
+    //             setUser(res.user);
+    //             toast.success("Registration Successful");
+    //             navigate("/")
+    //         })
+    //         .catch((e) => {
+    //             console.log(e);
+    //             toast.error(e.message);
+    //         });
 
-    }
+    // }
 
     return (
         <div className="bg-base-300 flex justify-center px-4 py-10 items-center min-h-screen">
             <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl my-16 pt-10 pb-3 rounded-2xl">
-                <h2 className="font-semibold text-4xl text-center pb-7 mx-10 border-primary text-primary border-b">
+                <h2 className="font-semibold text-4xl text-center  mx-10 text-primary ">
                     Register Your Account
                 </h2>
                 <form onSubmit={handleSubmit} className="card-body">
@@ -226,7 +226,7 @@ const Register = () => {
                             )}
                         </button>
 
-                        <div className="flex items-center justify-center gap-2 my-2">
+                        {/* <div className="flex items-center justify-center gap-2 my-2">
                             <div className="h-px w-16 bg-gray-600"></div>
                             <span className="text-sm">or</span>
                             <div className="h-px w-16 bg-gray-600"></div>
@@ -234,7 +234,7 @@ const Register = () => {
 
                         <button type='button' onClick={handleGoogleUp} className="btn btn-secondary">
                             <FcGoogle className='text-xl' /> Register With Google
-                        </button>
+                        </button> */}
 
                         <p className="font-medium text-lg text-center pt-5">
                             Already Have An Account ?{" "}

@@ -19,7 +19,7 @@ const Funding = () => {
             .catch(err => console.log(err));
     }, [axiosSecure])
 
-    console.log(funds)
+    // console.log(funds)
 
 
 
@@ -156,7 +156,7 @@ const Funding = () => {
                     <div className="text-center pb-6">
                         <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Funding Details</h3>
                     </div>
-                    <div className="overflow-x-auto rounded-box border  shadow-2xl">
+                    <div className="overflow-x-auto rounded-box border shadow-2xl">
                         <table className="table">
                             <thead className='bg-base-300 text-lg'>
                                 <tr className='bg-secondary text-secondary-content'>

@@ -88,7 +88,7 @@ const Navbar = () => {
                                     <div
                                         tabIndex={0}
                                         role="button"
-                                        className="flex justify-center items-center gap-2 p-1 bg-accent rounded-full cursor-pointer shadow-lg hover:bg-accent/85 transition-all "
+                                        className="flex justify-center items-center gap-2 p-1  rounded-full cursor-pointer shadow-lg transition-all bg-linear-to-br from-primary to-secondary  hover:from-primary/80 hover:to-secondary/10 "
                                     >
                                         <div className="avatar">
                                             <div className="w-10 rounded-full ">
@@ -99,7 +99,7 @@ const Navbar = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <HiDotsVertical className='text-xl text-secondary' />
+                                        <HiDotsVertical className='text-xl text-white' />
                                     </div>
                                     <ul
                                         tabIndex={0}
