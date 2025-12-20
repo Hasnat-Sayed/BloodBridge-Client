@@ -3,6 +3,7 @@ import { FaHeart, FaHandHoldingHeart, FaRegClock } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
 import useAxios from '../hooks/useAxios';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import Loading from '../components/Loading';
 
 const Funding = () => {
     const { user } = useContext(AuthContext);
@@ -10,11 +11,13 @@ const Funding = () => {
 
     const axiosSecure = useAxiosSecure();
     const [funds, setFunds] = useState([])
+    const [loading , setLoading] = useState(true)
 
     useEffect(() => {
         axiosSecure.get('/all-funds')
             .then(res => {
                 setFunds(res.data);
+                setLoading(false)
             })
             .catch(err => console.log(err));
     }, [axiosSecure])
@@ -43,6 +46,8 @@ const Funding = () => {
                 window.location.href = res.data.url
             })
     }
+
+    if(loading) return (<Loading></Loading>)
 
 
     return (

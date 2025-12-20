@@ -58,7 +58,7 @@ const Featured = () => {
     ];
 
     return (
-        <div className="bg-linear-to-b from-bg-base-300 to-bg-base-200 ">
+        <div className="bg-base-200 ">
             <div className="container mx-auto px-4 py-16 lg:px-20 min-h-screen">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
@@ -73,10 +73,10 @@ const Featured = () => {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="card bg-base-100 shadow-2xl hover:shadow-primary hover:border-primary hover:-translate-y-2 transition-all duration-300 border border-base-300 group"
+                            className="card bg-base-100 shadow-md hover:shadow-primary hover:border-primary hover:-translate-y-2 transition-all duration-300 border border-base-300 group"
                         >
                             <div className="card-body items-center text-center">
-                                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                                     <span className="text-3xl text-primary group-hover:text-primary-content transition-colors duration-300">
                                         {feature.icon}
                                     </span>

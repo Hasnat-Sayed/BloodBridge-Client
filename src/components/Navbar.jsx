@@ -91,7 +91,7 @@ const Navbar = () => {
                                         className="flex justify-center items-center gap-2 p-1  rounded-full cursor-pointer shadow-lg transition-all bg-linear-to-br from-primary to-secondary  hover:from-primary/80 hover:to-secondary/10 "
                                     >
                                         <div className="avatar">
-                                            <div className="w-10 rounded-full ">
+                                            <div className="w-7 md:w-10 rounded-full ">
                                                 <img
                                                     src={user?.photoURL}
                                                     alt={user?.displayName}

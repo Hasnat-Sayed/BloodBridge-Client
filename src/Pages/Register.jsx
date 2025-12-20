@@ -93,7 +93,7 @@ const Register = () => {
                         displayName: name, photoURL: mainPhotoUrl
                     }).then(async () => {
                         setUser(userCredential.user)
-                        await axios.post('http://localhost:5000/users', formData)
+                        await axios.post('https://bloodbridge-puce.vercel.app/users', formData)
                             .then(res => {
                                 console.log(res.data);
                             })

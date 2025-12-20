@@ -106,7 +106,7 @@ const Profile = () => {
     if (loading) return <Loading />
 
     return (
-        <div className="container mx-auto px-4 max-w-3xl">
+        <div className="container mx-auto max-w-3xl">
             <div className="card bg-base-100 border border-secondary/20 rounded-2xl shadow-2xl">
                 <div className="card-body">
                     <div className="text-center mb-5">
