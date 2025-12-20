@@ -11,7 +11,7 @@ import ban4 from '../assets/banner4.jpg';
 import { Link } from 'react-router';
 
 const Banner = () => {
-    const slides = [ban4, ban3, ban2, ban1];
+    const slides = [ban1, ban3, ban2, ban4];
 
     return (
         <div className="relative">

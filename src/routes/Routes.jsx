@@ -19,6 +19,8 @@ import Profile from "../Pages/Dashboard/Profile";
 import ErrorPage from "../Pages/ErrorPage";
 import AllRequestAdmin from "../Pages/Dashboard/AdminPages/AllRequestAdmin";
 import AllRequestVolunteer from "../Pages/Dashboard/VolunteerPages/AllRequestVolunteer";
+import AdminRoutes from "./AdminRoutes";
+import VolunteerRoutes from "./VolunteerRoutes";
 
 const router = createBrowserRouter([
     {
@@ -78,15 +80,15 @@ const router = createBrowserRouter([
             },
             {
                 path: 'all-users',
-                element: <AllUsers />
+                element: <AdminRoutes><AllUsers /></AdminRoutes>
             },
             {
                 path: 'all-requests-admin',
-                element: <AllRequestAdmin />
+                element: <AdminRoutes><AllRequestAdmin /></AdminRoutes>
             },
             {
                 path: 'all-requests-volunteer',
-                element: <AllRequestVolunteer />
+                element: <VolunteerRoutes><AllRequestVolunteer /></VolunteerRoutes>
             },
             {
                 path: 'my-requests',
