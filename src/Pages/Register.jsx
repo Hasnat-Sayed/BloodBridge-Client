@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const Register = () => {
 
-    const { user, registerWithEmailAndPass, setUser } = useContext(AuthContext);
+    const { user, registerWithEmailAndPass, setUser, signInWithGoogle } = useContext(AuthContext);
     const [error, setError] = useState("");
     const [show, setShow] = useState(false)
     const [btnLoading, setBtnLoading] = useState(false);
@@ -22,6 +22,7 @@ const Register = () => {
 
     const [district, setDistrict] = useState('')
     const [upazila, setUpazila] = useState('')
+    const [googleLoading, setGoogleLoading] = useState(false);
 
 
     useEffect(() => {
@@ -119,24 +120,56 @@ const Register = () => {
 
 
     }
-    // const handleGoogleUp = () => {
-    //     signInWithGoogle()
-    //         .then((res) => {
-    //             setLoading(false);
-    //             setUser(res.user);
-    //             toast.success("Registration Successful");
-    //             navigate("/")
-    //         })
-    //         .catch((e) => {
-    //             console.log(e);
-    //             toast.error(e.message);
-    //         });
+    const handleGoogle = async () => {
+        setGoogleLoading(true);
+        const result = await signInWithGoogle();
+        const user = result.user;
+        setUser(user);
+        const encodedEmail = encodeURIComponent(user.email);
 
-    // }
+        try {
+            const checkUser = await axios.get(
+                `https://bloodbridge-puce.vercel.app/users/${encodedEmail}`
+            );
+
+            if (checkUser.data) {
+                toast.success("Login Successful");
+                setGoogleLoading(false);
+                navigate(location.state || "/");
+            }
+        } catch (checkError) {
+
+            if (checkError.response && checkError.response.status === 404) {
+
+                const basicUserData = {
+                    email: user.email,
+                    name: user.displayName,
+                    mainPhotoUrl: user.photoURL,
+                    blood: "",
+                    district: "",
+                    upazila: ""
+                };
+
+                try {
+                    await axios.post('https://bloodbridge-puce.vercel.app/users', basicUserData);
+
+                    toast.info("Welcome! Please update your profile");
+                    setGoogleLoading(false);
+                    navigate("/dashboard/profile");
+
+                } catch (createError) {
+                    console.error(createError);
+                    toast.error("Failed to create user. Please try again.");
+                    setGoogleLoading(false);
+                }
+            }
+        }
+
+    };
 
     return (
         <div className="bg-base-300 flex justify-center px-4 py-10 items-center min-h-screen">
-            <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl my-16 pt-10 pb-3 rounded-2xl">
+            <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-md my-16 pt-10 pb-3 rounded-2xl">
                 <h2 className="font-semibold text-4xl text-center  mx-10 text-primary ">
                     Register Your Account
                 </h2>
@@ -228,15 +261,25 @@ const Register = () => {
                             )}
                         </button>
 
-                        {/* <div className="flex items-center justify-center gap-2 my-2">
+                        <div className="flex items-center justify-center gap-2 my-2">
                             <div className="h-px w-16 bg-gray-600"></div>
                             <span className="text-sm">or</span>
                             <div className="h-px w-16 bg-gray-600"></div>
                         </div>
 
-                        <button type='button' onClick={handleGoogleUp} className="btn btn-secondary">
-                            <FcGoogle className='text-xl' /> Register With Google
-                        </button> */}
+                        <button type='button' onClick={handleGoogle} className="btn btn-secondary" disabled={googleLoading}>
+                            {
+                                googleLoading ? (
+                                    <span className="loading loading-spinner text-primary loading-sm"></span>
+                                ) : (
+                                    <>
+                                        <FcGoogle className='text-xl' /> Login With Google
+                                    </>
+
+                                )
+                            }
+
+                        </button>
 
                         <p className="font-medium text-lg text-center pt-5">
                             Already Have An Account ?{" "}
