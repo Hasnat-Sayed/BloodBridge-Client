@@ -105,6 +105,17 @@ const Aside = () => {
                                             <MdArticle className="text-xl" />My Donation Requests
                                         </NavLink>
                                     </li>
+                                    <li>
+                                        <NavLink
+                                            to="/dashboard/review"
+                                            onClick={() => setIsSidebarOpen(false)}
+                                            className={({ isActive }) =>
+                                                `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
+                                            }
+                                        >
+                                            <MdArticle className="text-xl" />My Donation Requests
+                                        </NavLink>
+                                    </li>
                                 </>
                             )
                         }

@@ -21,6 +21,7 @@ import AllRequestAdmin from "../Pages/Dashboard/AdminPages/AllRequestAdmin";
 import AllRequestVolunteer from "../Pages/Dashboard/VolunteerPages/AllRequestVolunteer";
 import AdminRoutes from "./AdminRoutes";
 import VolunteerRoutes from "./VolunteerRoutes";
+import Review from "../Pages/Dashboard/DonorPages/Review";
 
 const router = createBrowserRouter([
     {
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
             {
                 path: 'profile',
                 element: <Profile></Profile>
+            },
+            {
+                path: 'review',
+                element: <Review></Review>
             }
 
         ]
