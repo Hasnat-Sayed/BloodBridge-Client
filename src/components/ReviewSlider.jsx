@@ -88,7 +88,7 @@ const ReviewSlider = () => {
                                     <div className="flex flex-col items-center mb-2">
                                         <img
                                             src={review.userPhoto}
-                                            className="w-20 h-20 rounded-full mb-2 ring-4 ring-primary"
+                                            className="w-20 h-20 object-cover rounded-full mb-2 ring-4 ring-primary"
                                             alt={review.userName}
                                         />
                                         <h3 className="text-xl font-semibold">{review.userName}</h3>

@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { MdDashboard, MdArticle, MdLogout, MdMenu, MdClose, MdAddCircleOutline, MdHome } from 'react-icons/md';
-import { FaUserPlus, FaChartLine, FaUsers } from 'react-icons/fa';
+import { FaUserPlus, FaChartLine, FaUsers, FaStar } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
 import Loading from './Loading';
 
@@ -113,7 +113,7 @@ const Aside = () => {
                                                 `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
                                             }
                                         >
-                                            <MdArticle className="text-xl" />My Donation Requests
+                                            <FaStar  className="text-xl" />Write a Review
                                         </NavLink>
                                     </li>
                                 </>

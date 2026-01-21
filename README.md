@@ -137,9 +137,5 @@ npm run build
 - **Payment:** Stripe Integration
 - **Deployment:** Firebase Hosting / Vercel
 
-## 👨‍💻 Developer
 
-**Your Name**  
-📧 Email: hasnatbin1@gmail.com  
-🔗 GitHub: [Hasnat-Sayed](https://github.com/Hasnat-Sayed)
 
