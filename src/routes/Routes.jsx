@@ -22,6 +22,7 @@ import AllRequestVolunteer from "../Pages/Dashboard/VolunteerPages/AllRequestVol
 import AdminRoutes from "./AdminRoutes";
 import VolunteerRoutes from "./VolunteerRoutes";
 import Review from "../Pages/Dashboard/DonorPages/Review";
+import ContactUs from "../Pages/ContactUs";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: '/search',
                 element: <SearchRequest></SearchRequest>
+            },
+            {
+                path: '/contact',
+                element: <ContactUs></ContactUs>
             },
             {
                 path: '/pending-requests',

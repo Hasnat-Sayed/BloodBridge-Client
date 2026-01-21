@@ -1,14 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 const ContactUs = () => {
 
 
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const { name, email, phone, message } = formData;
+
+        if (name.trim().length < 3) {
+            toast.error('Name must be at least 3 characters');
+            return;
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            toast.error('Please enter a valid email address');
+            return;
+        }
+
+        if (phone.trim().length < 11) {
+            toast.error('Please enter a valid phone number');
+            return;
+        }
+
+        if (message.trim().length < 10) {
+            toast.error('Message must be at least 10 characters long');
+            return;
+        }
+
         toast.success('Thank you for contacting us! We will get back to you soon.');
-    };
+
+        setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            message: ''
+        });
+    }
 
     return (
 
@@ -113,9 +157,11 @@ const ContactUs = () => {
                                     </label>
                                     <input
                                         type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
                                         className="input input-bordered w-full rounded-xl bg-base-100"
                                         placeholder="Enter your name"
-                                        required
                                     />
                                 </div>
 
@@ -125,10 +171,13 @@ const ContactUs = () => {
                                     </label>
                                     <input
                                         type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
                                         className="input input-bordered w-full rounded-xl bg-base-100"
                                         placeholder="your.email@example.com"
-                                        required
                                     />
+
                                 </div>
 
                                 <div>
@@ -137,9 +186,11 @@ const ContactUs = () => {
                                     </label>
                                     <input
                                         type="tel"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
                                         className="input input-bordered w-full rounded-xl bg-base-100"
                                         placeholder="+880 1234-567890"
-                                        required
                                     />
                                 </div>
 
@@ -148,6 +199,9 @@ const ContactUs = () => {
                                         <span className="label-text font-semibold text-secondary">Message</span>
                                     </label>
                                     <textarea
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleChange}
                                         rows="4"
                                         className="textarea textarea-bordered w-full rounded-xl bg-base-100"
                                         placeholder="Write your message here..."

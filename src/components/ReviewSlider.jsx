@@ -8,7 +8,6 @@ const ReviewSlider = () => {
     const [isPaused, setIsPaused] = useState(false);
     const [cardsPerView, setCardsPerView] = useState(1);
 
-    // 🔹 Detect screen size
     useEffect(() => {
         const updateView = () => {
             setCardsPerView(window.innerWidth >= 1024 ? 3 : 1);
@@ -18,14 +17,13 @@ const ReviewSlider = () => {
         return () => window.removeEventListener('resize', updateView);
     }, []);
 
-    // 🔹 Fetch reviews
+
     useEffect(() => {
         axios.get('https://bloodbridge-puce.vercel.app/review')
             .then(res => setReviews(res.data))
             .catch(err => console.log(err));
     }, []);
 
-    // 🔹 Auto slide
     useEffect(() => {
         if (!isPaused && reviews.length > cardsPerView) {
             const interval = setInterval(() => {
@@ -44,7 +42,7 @@ const ReviewSlider = () => {
                 <FaStar
                     key={star}
                     size={18}
-                    className={star <= rating ? 'text-yellow-500' : 'text-gray-300'}
+                    className={star <= rating ? 'text-yellow-400' : 'text-gray-200'}
                 />
             ))}
         </div>
@@ -55,13 +53,13 @@ const ReviewSlider = () => {
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
-                        What Our Users Say
+                        What Our <span className='text-primary'>Users Say</span>
                     </h2>
 
                 </div>
 
                 <div
-                    className="relative overflow-hidden hover:cursor-pointer"
+                    className="relative overflow-hidden hover:cursor-pointer "
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                 >
