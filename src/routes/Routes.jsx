@@ -23,6 +23,7 @@ import AdminRoutes from "./AdminRoutes";
 import VolunteerRoutes from "./VolunteerRoutes";
 import Review from "../Pages/Dashboard/DonorPages/Review";
 import ContactUs from "../Pages/ContactUs";
+import AboutUs from "../Pages/AboutUs";
 
 const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
             {
                 path: '/contact',
                 element: <ContactUs></ContactUs>
+            },
+            {
+                path: '/about',
+                element: <AboutUs></AboutUs>
             },
             {
                 path: '/pending-requests',

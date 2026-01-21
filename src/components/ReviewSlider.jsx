@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
+import Loading from './Loading';
 
 const ReviewSlider = () => {
     const [reviews, setReviews] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const [cardsPerView, setCardsPerView] = useState(1);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const updateView = () => {
@@ -20,8 +22,11 @@ const ReviewSlider = () => {
 
     useEffect(() => {
         axios.get('https://bloodbridge-puce.vercel.app/review')
-            .then(res => setReviews(res.data))
-            .catch(err => console.log(err));
+            .then(res => {
+                setReviews(res.data)
+                setLoading(false)
+            })
+            .catch(err => console.log(err))
     }, []);
 
     useEffect(() => {
@@ -30,7 +35,7 @@ const ReviewSlider = () => {
                 setCurrentIndex(prev =>
                     prev >= reviews.length - cardsPerView ? 0 : prev + 1
                 );
-            }, 2500);
+            }, 1500);
 
             return () => clearInterval(interval);
         }
@@ -47,6 +52,7 @@ const ReviewSlider = () => {
             ))}
         </div>
     );
+    if(loading) return <Loading></Loading>
 
     return (
         <div className="bg-base-300 py-16">
@@ -72,9 +78,9 @@ const ReviewSlider = () => {
                         {reviews.map((review, index) => (
                             <div
                                 key={review._id || index}
-                                className="w-full lg:w-1/3 px-5 shrink-0 hover:scale-105 duration-150"
+                                className="w-full lg:w-1/3 px-5 shrink-0 hover:scale-105 duration-300"
                             >
-                                <div className="card rounded-2xl bg-primary/30 shadow-sm p-6 h-full">
+                                <div className="card rounded-2xl bg-linear-to-br from-primary/80 to-primary/10 p-6 h-full">
                                     <div className="flex justify-center mb-4">
                                         <FaQuoteLeft className="text-primary text-3xl" />
                                     </div>
