@@ -32,13 +32,15 @@ The primary purpose of Blood Bridge is to:
 - **Responsive UI:** Works on mobile, tablet and desktop
 
 
+
 ## 🛠️ Tech Stack
 
-**Frontend:** React 19, React Router 7, Tailwind CSS 4, DaisyUI
-**Backend:** Node.js, Express.js, MongoDB
-**Auth:** Firebase Authentication + Firebase Admin (token verification)
-**Payment:** Stripe Checkout
-**Hosting:** Netlify (client), Vercel (server)
+- **Frontend:** React 19, React Router 7, Tailwind CSS 4, DaisyUI
+- **Backend:** Node.js, Express.js, MongoDB
+- **Auth:** Firebase Authentication + Firebase Admin (token verification)
+- **Payment:** Stripe Checkout
+- **Hosting:** Netlify (client), Vercel (server)
+
 
 
 ## 📦 Dependencies
