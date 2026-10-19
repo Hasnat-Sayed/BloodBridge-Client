@@ -18,124 +18,94 @@ The primary purpose of Blood Bridge is to:
 
 ## ✨ Key Features
 
-### 🔐 Authentication & Authorization
-- Secure user registration and login system
-- Role-based access control (Admin, Donor, Volunteer)
-- Firebase authentication integration
-- JWT token-based API protection
+- **Authentication:** Register and login with Firebase; avatar upload via imgBB; new users are `donor` and `active` by default
+- **Role-based dashboards:** Separate sidebar dashboards for Admin, Donor and Volunteer
+- **Donation requests:** Create, edit, delete and view requests; status flow `pending → inprogress → done / canceled`
+- **My Requests table:** Status filter and pagination
+- **Donate flow:** Donor confirms from the details page, which moves the request to `inprogress`
+- **Search donors:** Public search by blood group, district and upazila
+- **Admin tools:** Block/unblock users, make volunteer/admin, manage all requests, view stats
+- **Volunteer access:** View all requests and update status only
+- **Funding:** Stripe payments with a funding history table
+- **Profile page:** View and edit profile (email is read-only), synced with Firebase
+- **Protected APIs:** Firebase ID token verified on private routes
+- **Responsive UI:** Works on mobile, tablet and desktop
 
-### 👥 User Management
-- **For Donors:**
-  - Create and manage personal donation requests
-  - Update donation status (pending → inprogress → done/canceled)
-  - Track donation history and impact
-  - Search for other donors by blood type and location
-  
-- **For Volunteers:**
-  - View all donation requests
-  - Update donation status for coordination
-  - Access dashboard statistics
-  
-- **For Admins:**
-  - Complete user management (block/unblock users)
-  - Role management (promote users to volunteer/admin)
-  - Monitor all donation requests and statistics
-  - View total funding and user metrics
 
-### 🩸 Donation Request System
-- Create detailed blood donation requests with hospital and location information
-- Real-time status tracking (pending, inprogress, done, canceled)
-- Donor information display when request is in progress
-- Edit and delete functionality for request creators
-- Filtering and pagination for easy navigation
+## 🛠️ Tech Stack
 
-### 🔍 Smart Search
-- Advanced search by blood group, district, and upazila
-- Real-time donor availability status
-- Location-based donor matching
+**Frontend:** React 19, React Router 7, Tailwind CSS 4, DaisyUI
+**Backend:** Node.js, Express.js, MongoDB
+**Auth:** Firebase Authentication + Firebase Admin (token verification)
+**Payment:** Stripe Checkout
+**Hosting:** Netlify (client), Vercel (server)
 
-### 📊 Dashboard Features
-- Role-specific dashboards with relevant statistics
-- Recent donation requests overview
-- Responsive sidebar navigation
-- Profile management with edit functionality
 
-### 💰 Funding System (Bonus Feature)
-- Stripe payment integration for monetary donations
-- Funding history tracking
-- Total funds display on admin dashboard
+## 📦 Dependencies
 
-### 🎨 UI/UX Features
-- Fully responsive design (mobile, tablet, desktop)
-- Modern gradient backgrounds and animations
-- Smooth page transitions with React Router
-- Interactive hover effects and card animations
-- Toast notifications for user feedback
-- SweetAlert2 modals for confirmations
-- Swiper carousel for banner sections
+**Client**
+`react`, `react-dom`, `react-router`, `tailwindcss`, `@tailwindcss/vite`, `daisyui`, `firebase`, `axios`, `react-icons`, `react-toastify`, `sweetalert2`, `swiper`
 
-## 📦 NPM Packages Used
+**Server**
+`express`, `mongodb`, `cors`, `dotenv`, `stripe`, `firebase-admin`
 
-### Core Dependencies
-- **react** (^19.2.0) - JavaScript library for building user interfaces
-- **react-dom** (^19.2.0) - React package for DOM rendering
-- **react-router** (^7.10.1) - Declarative routing for React applications
+## 🚀 Run Locally
 
-### Styling & UI
-- **tailwindcss** (^4.1.18) - Utility-first CSS framework
-- **@tailwindcss/vite** (^4.1.18) - Tailwind CSS integration for Vite
-- **react-icons** (^5.5.0) - Popular icon library for React
-- **swiper** (^12.0.3) - Modern mobile touch slider
-
-### Backend & API
-- **axios** (^1.13.2) - Promise-based HTTP client
-- **firebase** (^12.6.0) - Backend services (Authentication, Hosting)
-
-### User Experience
-- **react-toastify** (^11.0.5) - Elegant toast notifications
-- **sweetalert2** (^11.26.10) - Beautiful, responsive popup boxes
-
-## 🚀 Installation & Setup
-
-1. Clone the repository:
+### 1. Clone the repositories
 ```bash
-git clone https://github.com/yourusername/blood-bridge.git
-cd blood-bridge
+git clone https://github.com/Hasnat-Sayed/BloodBridge-Client.git
+git clone https://github.com/Hasnat-Sayed/BloodBridge-Server.git
 ```
 
-2. Install dependencies:
+### 2. Run the server
 ```bash
+cd BloodBridge-Server
 npm install
 ```
-
-3. Create a `.env` file in the root directory and add your Firebase configuration:
+Create a `.env` file:
 ```env
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
+PORT=5000
+DB_USERNAME=your_mongodb_username
+DB_PASSWORD=your_mongodb_password
+STRIPE_KEY=your_stripe_secret_key
+FB_SERVICE_KEY=your_firebase_service_account_json_in_base64
+SITE_DOMAIN=http://localhost:5173
+```
+Start it:
+```bash
+node index.js
 ```
 
-4. Start the development server:
+### 3. Run the client
+```bash
+cd BloodBridge-Client
+npm install
+```
+Create a `.env` file:
+```env
+VITE_apiKey=your_firebase_api_key
+VITE_authDomain=your_firebase_auth_domain
+VITE_projectId=your_firebase_project_id
+VITE_storageBucket=your_firebase_storage_bucket
+VITE_messagingSenderId=your_firebase_sender_id
+VITE_appId=your_firebase_app_id
+VITE_imgbb_key=your_imgbb_api_key
+```
+Point the API base URL to your local server (in `useAxiosSecure` and `useAxios`):
+```js
+baseURL: 'http://localhost:5000'
+```
+Start it:
 ```bash
 npm run dev
 ```
+The app runs at `http://localhost:5173`.
 
-5. Build for production:
-```bash
-npm run build
-```
+> To get an admin account, register normally and change the user's `role` to `admin` directly in the MongoDB `user` collection.
 
-## 🛠️ Technology Stack
+## 🔗 Links
 
-- **Frontend:** React 19, Tailwind CSS 4
-- **Routing:** React Router v7
-- **Authentication:** Firebase Authentication
-- **Backend:** Node.js, Express.js, MongoDB
-- **Payment:** Stripe Integration
-- **Deployment:** Firebase Hosting / Vercel
-
-
-
+- **Live Site:** https://blood-bridge-2099.netlify.app/
+- **Server API:** https://bloodbridge-puce.vercel.app/
+- **Client Repo:** https://github.com/Hasnat-Sayed/BloodBridge-Client
+- **Server Repo:** https://github.com/Hasnat-Sayed/BloodBridge-Server
