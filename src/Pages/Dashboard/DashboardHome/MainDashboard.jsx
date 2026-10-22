@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
-import Loading from '../../../components/Loading';
+import DashboardSkeleton from '../../../components/dashboard/DashboardSkeleton';
 import AdminHome from './AdminHome';
 import DonorHome from './DonorHome';
 import VolunteerHome from './VolunteerHome';
@@ -8,7 +8,7 @@ import VolunteerHome from './VolunteerHome';
 const MainDashboard = () => {
     const { role, roleLoading, loading } = useContext(AuthContext)
     if (loading || roleLoading) {
-        return <Loading></Loading>
+        return <DashboardSkeleton cards={role === 'admin' ? 8 : 4} />;
     }
     if (role == 'admin') {
         return <AdminHome></AdminHome>
@@ -19,7 +19,7 @@ const MainDashboard = () => {
     if(role == 'volunteer'){
         return <VolunteerHome></VolunteerHome>
     }
-    return <Loading />;
+    return <DashboardSkeleton />;;
 };
 
 export default MainDashboard;

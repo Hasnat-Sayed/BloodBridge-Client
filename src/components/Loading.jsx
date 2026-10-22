@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Loading = () => {
+const Loading = ({ className = 'min-h-[60vh]' }) => {
     return (
-        <div className="flex justify-center items-center min-h-screen">
-            <div className="w-20 h-20 border-8 border-secondary border-t-transparent rounded-full animate-spin"></div>
+        <div className={`flex justify-center items-center ${className}`} role="status" aria-label="Loading">
+            <span className="loading loading-spinner w-16 text-primary"></span>
         </div>
     );
 };

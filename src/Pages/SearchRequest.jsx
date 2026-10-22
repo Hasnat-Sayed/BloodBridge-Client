@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { FaSearch, FaTint, FaEraser, FaUserSlash, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import useAxios from '../hooks/useAxios';
-import SectionTitle from '../components/home/SectionTitle';
 
 const BLOOD_GROUPS = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 
@@ -89,7 +88,12 @@ const SearchRequest = () => {
 		<div className="bg-base-200">
 			<div className="container mx-auto pt-10 pb-16 px-4 lg:px-20 min-h-screen">
 				
-				<SectionTitle title="	Search Blood" highlight="Donors" subtitle="Pick a blood group, then narrow down by district and upazila." />
+			<div className="text-center mb-10">
+                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-heading">
+                        Search <span className="text-primary">Blood</span> Donors
+                    </h3>
+                    <p className="mt-3 text-base-content/80">Pick a blood group, then narrow down by district and upazila.</p>
+                </div>
 
 				<form onSubmit={handleSearch} className="max-w-4xl mx-auto">
 					<div className="bg-base-100 rounded-2xl shadow-xl p-6 border border-base-300">

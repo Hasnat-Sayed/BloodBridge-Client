@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FaUsers, FaDonate, FaTint, FaHourglassHalf, FaCheckCircle, FaUserFriends, FaSpinner, FaExclamationCircle } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import Loading from '../Loading';
+import { OverviewSkeleton } from './DashboardSkeleton';
 import StatCard from './StatCard';
 import DashboardCharts from './DashboardCharts';
 
 const count = (list, status) => list.filter(r => r.donation_status === status).length;
 
-// role: 'admin' | 'volunteer' | 'donor'
 const DashboardOverview = ({ role }) => {
     const axiosSecure = useAxiosSecure();
     const [loading, setLoading] = useState(true);
@@ -31,7 +30,7 @@ const DashboardOverview = ({ role }) => {
         });
     }, [axiosSecure, role]);
 
-    if (loading) return <Loading />;
+    if (loading) return <OverviewSkeleton cards={role === 'admin' ? 8 : 4} />;
 
     const { requests, funds, stats, users } = data;
 
@@ -45,11 +44,13 @@ const DashboardOverview = ({ role }) => {
             { icon: <FaSpinner />, label: 'In Progress', value: count(requests, 'inprogress') },
             { icon: <FaCheckCircle />, label: 'Completed Donations', value: count(requests, 'done') },
             { icon: <FaExclamationCircle />, label: 'Cancelled', value: count(requests, 'canceled') },
+            
         ],
         volunteer: [
             { icon: <FaUsers />, label: 'Total Donors', value: stats.totalDonors },
             { icon: <FaTint />, label: 'Blood Requests', value: stats.totalRequest },
             { icon: <FaHourglassHalf />, label: 'Pending Requests', value: count(requests, 'pending') },
+            { icon: <FaSpinner />, label: 'In Progress', value: count(requests, 'inprogress') },
         ],
         donor: [
             { icon: <FaTint />, label: 'My Requests', value: requests.length },

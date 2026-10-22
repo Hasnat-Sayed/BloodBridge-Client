@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import Loading from '../../../components/Loading';
+import DashboardSkeleton from '../../../components/dashboard/DashboardSkeleton';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 import { FaCheck, FaEdit, FaEye, FaTimes, FaTrash } from 'react-icons/fa';
@@ -80,7 +80,7 @@ const DonorHome = () => {
         return statusConfig[status] || 'badge-ghost';
     };
 
-    if (loading) return <Loading></Loading>
+    if (loading) return <DashboardSkeleton />
 
 
     return (

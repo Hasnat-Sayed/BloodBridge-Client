@@ -5,13 +5,12 @@ import { MdDashboard, MdArticle, MdLogout, MdMenu, MdClose, MdAddCircleOutline, 
 import { FaUserPlus, FaChartLine, FaUsers, FaStar } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
 import ThemeToggle from './ThemeToggle';
-import Loading from './Loading';
 
 const Aside = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const { role, roleLoading, loading } = useContext(AuthContext)
 
-    if (loading || roleLoading) return <Loading></Loading>
+    const ready = !(loading || roleLoading)
 
     return (
         <>
@@ -41,17 +40,23 @@ const Aside = () => {
                         <img src="https://img.icons8.com/?size=100&id=26115&format=png&color=E63946" className="w-10 h-10 lg:w-9 lg:h-9" alt="" />
                         <div>
                             <h1 className="text-lg font-bold leading-tight">Blood Bridge</h1>
-                            <p className="text-xs mt-0.5 leading-tight opacity-70">
-                                {role == 'admin' && 'Admin Dashboard'}
-                                {role == 'donor' && 'Donor Dashboard'}
-                                {role == 'volunteer' && 'Volunteer Dashboard'}
+                            <p className="text-xs mt-0.5 leading-tight opacity-70 min-h-4">
+                                {ready && role == 'admin' && 'Admin Dashboard'}
+                                {ready && role == 'donor' && 'Donor Dashboard'}
+                                {ready && role == 'volunteer' && 'Volunteer Dashboard'}
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <nav className="flex-1 overflow-y-auto">
-                    <ul className="menu p-4 space-y-3 w-full">
+                    {!ready ? (
+                        <div className="p-4 space-y-3" aria-busy="true">
+                            {Array.from({ length: 4 }).map((_, i) => (
+                                <div key={i} className="skeleton h-12 w-full bg-secondary-content/10"></div>
+                            ))}
+                        </div>
+                    ) : (<ul className="menu p-4 space-y-3 w-full">
                         <li>
                             <NavLink
                                 to="/dashboard"
@@ -177,6 +182,8 @@ const Aside = () => {
                         }
 
                     </ul>
+                    )}
+
 
 
                 </nav>

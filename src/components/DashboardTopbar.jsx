@@ -3,13 +3,21 @@ import { Link } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 
 const DashboardTopbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const name = user?.displayName || 'User';
     const initial = name.charAt(0).toUpperCase();
 
     return (
         <header className="sticky top-0 z-20 h-16 shrink-0 flex items-center justify-end gap-3 pl-16 pr-4 lg:pl-6 lg:pr-6 bg-secondary backdrop-blur border-b border-secondary-content/30">
-            <Link
+            {loading ? (
+                <div className="flex items-center gap-3" aria-busy="true">
+                    <div className="space-y-2">
+                        <div className="skeleton h-4 w-28 ml-auto"></div>
+                        <div className="skeleton h-3 w-36 ml-auto"></div>
+                    </div>
+                    <div className="skeleton w-10 h-10 rounded-full shrink-0"></div>
+                </div>
+            ) : (<Link
                 to="/dashboard/profile"
                 title="My Profile"
                 className="flex items-center gap-3 min-w-0 rounded-full py-1 pl-3 pr-1 hover:bg-base-200 transition-colors"
@@ -30,7 +38,8 @@ const DashboardTopbar = () => {
                         {initial}
                     </div>
                 )}
-            </Link>
+            </Link>)}
+
         </header>
     );
 };
