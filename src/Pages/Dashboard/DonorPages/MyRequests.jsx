@@ -103,7 +103,7 @@ const MyRequests = () => {
     return (
         <div className='container bg-base-200 mx-auto md:pt-6 pb-16 min-h-screen'>
             <div className="text-center mb-5">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary">My <span className='text-primary'>Requests</span></h3>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-heading">My <span className='text-primary'>Requests</span></h3>
             </div>
 
 
@@ -152,7 +152,7 @@ const MyRequests = () => {
                                     </td>
 
                                     <td>
-                                        <span className={`badge badge-sm font-medium text-black ${getStatusBadge(request?.donation_status)}`}>
+                                        <span className={`badge badge-sm font-medium   ${getStatusBadge(request?.donation_status)}`}>
                                             {request?.donation_status}
                                         </span>
                                     </td>

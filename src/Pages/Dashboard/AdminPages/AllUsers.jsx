@@ -59,7 +59,7 @@ const AllUsers = () => {
     return (
         <div className='container bg-base-200 mx-auto pt-6 pb-16 px-4 lg:px-20 min-h-screen'>
             <div className="text-center mb-10">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary">All <span className='text-primary'>Users</span></h3>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-heading">All <span className='text-primary'>Users</span></h3>
             </div>
 
 

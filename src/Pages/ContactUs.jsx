@@ -56,10 +56,10 @@ const ContactUs = () => {
 
     return (
 
-        <div className="bg-primary">
+        <div className="bg-[#D62839]">
             <div className="container mx-auto px-4 py-16 lg:px-20">
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                         Get In <span className="text-white">Touch</span>
                     </h2>
                     <p className="text-lg text-white max-w-2xl mx-auto">
@@ -72,7 +72,7 @@ const ContactUs = () => {
                     <div className="space-y-6">
                         <div className="card bg-base-200 shadow-xl shadow-secondary border  border-secondary">
                             <div className="card-body">
-                                <h3 className="text-3xl font-bold text-secondary mb-6">
+                                <h3 className="text-3xl font-bold text-heading mb-6">
                                     Contact Information
                                 </h3>
 
@@ -81,7 +81,7 @@ const ContactUs = () => {
                                         <FaPhone className="text-2xl text-primary" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg text-secondary mb-1">
+                                        <h4 className="font-bold text-lg text-heading mb-1">
                                             Emergency Hotline
                                         </h4>
                                         <p className="text-primary font-medium ">
@@ -98,7 +98,7 @@ const ContactUs = () => {
                                         <FaEnvelope className="text-2xl text-accent" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg text-secondary mb-1">
+                                        <h4 className="font-bold text-lg text-heading mb-1">
                                             Email Us
                                         </h4>
                                         <p className="text-accent font-medium ">
@@ -115,7 +115,7 @@ const ContactUs = () => {
                                         <FaMapMarkerAlt className="text-2xl text-error" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg text-secondary mb-1">
+                                        <h4 className="font-bold text-lg text-heading mb-1">
                                             Visit Us
                                         </h4>
                                         <p className="text-base-content/80">
@@ -130,7 +130,7 @@ const ContactUs = () => {
                                         <FaClock className="text-2xl text-success" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg text-secondary mb-1">
+                                        <h4 className="font-bold text-lg text-heading mb-1">
                                             Office Hours
                                         </h4>
                                         <p className="text-base-content/80">
@@ -146,14 +146,14 @@ const ContactUs = () => {
 
                     <div className="card bg-base-200 shadow-xl shadow-secondary border  border-secondary">
                         <div className="card-body">
-                            <h3 className="text-3xl font-bold text-secondary mb-6">
+                            <h3 className="text-3xl font-bold text-heading mb-6">
                                 Send Us a Message
                             </h3>
 
                             <div className="space-y-4">
                                 <div>
                                     <label className="label">
-                                        <span className="label-text font-semibold text-secondary">Your Name</span>
+                                        <span className="label-text font-semibold text-heading">Your Name</span>
                                     </label>
                                     <input
                                         type="text"
@@ -167,7 +167,7 @@ const ContactUs = () => {
 
                                 <div>
                                     <label className="label">
-                                        <span className="label-text font-semibold text-secondary">Email Address</span>
+                                        <span className="label-text font-semibold text-heading">Email Address</span>
                                     </label>
                                     <input
                                         type="email"
@@ -182,7 +182,7 @@ const ContactUs = () => {
 
                                 <div>
                                     <label className="label">
-                                        <span className="label-text font-semibold text-secondary">Phone Number</span>
+                                        <span className="label-text font-semibold text-heading">Phone Number</span>
                                     </label>
                                     <input
                                         type="tel"
@@ -196,7 +196,7 @@ const ContactUs = () => {
 
                                 <div>
                                     <label className="label">
-                                        <span className="label-text font-semibold text-secondary">Message</span>
+                                        <span className="label-text font-semibold text-heading">Message</span>
                                     </label>
                                     <textarea
                                         name="message"

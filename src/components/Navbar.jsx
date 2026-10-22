@@ -8,6 +8,7 @@ import { FaPaw } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
 import { CiLogout } from 'react-icons/ci';
 import { HiDotsVertical } from 'react-icons/hi';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
 
@@ -26,7 +27,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-secondary text-secondary-content shadow-2xl px-2 lg:px-20 border-b border-primary/80  z-50">
+        <div className="navbar sticky top-0 z-50 bg-secondary text-secondary-content shadow-2xl px-2 lg:px-20 border-b border-brand-light/80">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden pl-0 pr-2">
@@ -34,7 +35,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex="0"
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow text-secondary">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow text-heading">
                         <li><NavLink to="/">Home</NavLink></li>
                         <li><NavLink to="/pending-requests">Donation Requests</NavLink></li>
                         <li><NavLink to="search">Search</NavLink></li>
@@ -57,7 +58,7 @@ const Navbar = () => {
                         />
                     </div>
                     <div>
-                        <p className="text-xl md:text-2xl font-bold text-primary leading-none">
+                        <p className="text-xl md:text-2xl font-bold text-brand-light leading-none">
                             Blood <span className="text-secondary-content">Bridge</span>
                         </p>
                     </div>
@@ -82,10 +83,12 @@ const Navbar = () => {
             {
                 loading ? (
                     <div className="navbar-end flex gap-3">
+                        <ThemeToggle />
                         <span className="loading loading-spinner loading-xl"></span>
                     </div>
                 ) : (
                     <div className="navbar-end flex items-center gap-2 md:gap-3">
+                        <ThemeToggle />
                         {user ? (
                             <>
                                 <div className="dropdown dropdown-end">
@@ -110,7 +113,7 @@ const Navbar = () => {
                                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow-lg border border-base-300 font-bold"
                                     >
                                         <li>
-                                            <Link to="/dashboard" className="py-3 text-secondary">
+                                            <Link to="/dashboard" className="py-3 text-heading">
                                                 <MdDashboard className='text-xl' />
                                                 Dashboard
                                             </Link>

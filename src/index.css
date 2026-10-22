@@ -1,41 +1,102 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 @import "tailwindcss";
-@plugin "daisyui"{
-  themes: light --default;
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
 }
 
+/* ---------- LIGHT THEME ---------- */
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  
-  --color-primary: #E63946;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-primary: #D62839;          /* 4.97:1 on white */
   --color-primary-content: #FFFFFF;
-  
+
   --color-secondary: #2B2D42;
   --color-secondary-content: #FFFFFF;
-  
+
   --color-base-100: #FFFFFF;
   --color-base-200: #F8F9FA;
   --color-base-300: #E9ECEF;
   --color-base-content: #212529;
-  
-  --color-accent: #457B9D;
+
+  --color-accent: #3A6D8C;           /* 5.6:1 on white */
   --color-accent-content: #FFFFFF;
-  
+
   --color-neutral: #6C757D;
   --color-neutral-content: #FFFFFF;
-  
 }
 
+/* ---------- DARK THEME (all text pairs >= 4.5:1) ---------- */
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-primary: #FF6B76;          /* 6.5:1 on #0F172A */
+  --color-primary-content: #2A0A0D;
+
+  --color-secondary: #27324A;
+  --color-secondary-content: #E2E8F0;
+
+  --color-base-100: #1E293B;
+  --color-base-200: #0F172A;
+  --color-base-300: #334155;
+  --color-base-content: #E2E8F0;     /* 11.9:1 on base-100 */
+
+  --color-accent: #7DB9DC;
+  --color-accent-content: #0B1B27;
+
+  --color-neutral: #94A3B8;
+  --color-neutral-content: #0F172A;
+}
+
+/* Theme-aware helper colors:  text-heading , text-brand-light */
+:root,
+[data-theme="light"] {
+  --heading: #2B2D42;
+}
+[data-theme="dark"] {
+  --heading: #F1F5F9;
+}
+:root {
+  --brand-light: #FF6B76; /* red that stays readable on the dark navy navbar/footer */
+}
+
+@theme inline {
+  --color-heading: var(--heading);
+  --color-brand-light: var(--brand-light);
+}
 
 * {
   font-family: "Inter", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .menu a.active {
-  @apply text-primary underline font-bold underline-offset-3;
+  @apply font-bold underline underline-offset-4;
+  color: var(--color-primary);
 }
 .menu a:not(.active):hover {
-  @apply text-blue-500;
+  color: var(--color-accent);
+}
+/* navbar bar is always dark navy, so it needs the lighter red */
+.navbar-center .menu a.active,
+.navbar-center .menu a:not(.active):hover {
+  color: var(--color-brand-light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -11,7 +11,7 @@ const Funding = () => {
 
     const axiosSecure = useAxiosSecure();
     const [funds, setFunds] = useState([])
-    const [loading , setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         axiosSecure.get('/all-funds')
@@ -47,17 +47,17 @@ const Funding = () => {
             })
     }
 
-    if(loading) return (<Loading></Loading>)
+    if (loading) return (<Loading></Loading>)
 
 
     return (
 
         <div className='bg-base-200'>
-            <div className="bg-linear-to-b from-primary to-secondary text-primary-content py-10">
+            <div className="bg-linear-to-b from-[#D62839] to-[#2B2D42] text-white py-10">
                 <div className="px-4 text-center">
                     <FaHeart className="text-6xl mx-auto mb-4 animate-pulse" />
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">Support Blood Bridge</h1>
-                    <p className="text-xl mb-6 max-w-3xl mx-auto text-gray-300">
+                    <p className="text-xl mb-6 max-w-3xl mx-auto text-white/90">
                         Your contribution helps us save lives by connecting donors with those in need
                     </p>
                 </div>
@@ -69,7 +69,7 @@ const Funding = () => {
 
                         <div className="flex-1 flex flex-col justify-center">
 
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary mb-6">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-6">
                                 Make a <span className="text-primary">Difference</span> Today
                             </h2>
                             <p className=" mb-6 text-base-content/80">
@@ -124,7 +124,7 @@ const Funding = () => {
                                 </h3>
                                 <fieldset className="fieldset md:px-20">
 
-                                    <label className="label font-semibold text-secondary">Email</label>
+                                    <label className="label font-semibold text-heading">Email</label>
                                     <input
                                         name="email"
                                         type="email"
@@ -133,7 +133,7 @@ const Funding = () => {
                                         readOnly
                                     />
 
-                                    <label className="label font-semibold text-secondary">Amount</label>
+                                    <label className="label font-semibold text-heading">Amount</label>
                                     <input
                                         name="donateAmount"
                                         type="text"

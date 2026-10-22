@@ -139,7 +139,7 @@ const Profile = () => {
                                 )}
                             </div>
                             <div>
-                                <label className="label font-semibold text-secondary">Email</label>
+                                <label className="label font-semibold text-heading">Email</label>
                                 <input
                                     type="email"
                                     value={profileData.email}
@@ -149,7 +149,7 @@ const Profile = () => {
                             </div>
 
                             <div>
-                                <label className="label font-semibold text-secondary">Name</label>
+                                <label className="label font-semibold text-heading">Name</label>
                                 <input
                                     type="text"
                                     value={profileData.name}
@@ -163,7 +163,7 @@ const Profile = () => {
                             {
                                 isEditable && (
                                     <div>
-                                        <label className="label text-secondary font-semibold">Photo</label>
+                                        <label className="label text-heading font-semibold">Photo</label>
                                         <input
                                             name="photo"
                                             type="file"
@@ -175,7 +175,7 @@ const Profile = () => {
 
 
                             <div>
-                                <label className="label font-semibold text-secondary">Blood Group</label>
+                                <label className="label font-semibold text-heading">Blood Group</label>
                                 <select
                                     value={profileData.bloodGroup}
                                     onChange={(e) => setProfileData({ ...profileData, bloodGroup: e.target.value })}
@@ -195,7 +195,7 @@ const Profile = () => {
                             </div>
 
                             <div>
-                                <label className="label ont-semibold text-secondary">District</label>
+                                <label className="label ont-semibold text-heading">District</label>
                                 <select value={profileData.district}
                                     onChange={(e) => setProfileData({ ...profileData, district: e.target.value })}
                                     className="select select-bordered w-full rounded-xl bg-base-200"
@@ -209,7 +209,7 @@ const Profile = () => {
                             </div>
 
                             <div>
-                                <label className="label ont-semibold text-secondary">Upazilla</label>
+                                <label className="label ont-semibold text-heading">Upazilla</label>
                                 <select
                                     value={profileData.upazila}
                                     onChange={(e) => setProfileData({ ...profileData, upazila: e.target.value })}

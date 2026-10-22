@@ -58,13 +58,13 @@ const AboutUs = () => {
 
     return (
         <div className="min-h-screen">
-            
-            <div className="bg-linear-to-b from-primary to-secondary text-primary-content py-10">
+
+            <div className="bg-linear-to-b from-[#D62839] to-[#2B2D42] text-white py-10">
                 <div className="px-4 text-center">
                     <FaInfoCircle className="text-6xl mx-auto mb-4 animate-pulse" />
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">About <span className="text-secondary">BloodBridge</span></h1>
-                    <p className="text-xl mb-6 max-w-3xl mx-auto text-gray-300">
-                         Connecting donors with those in need, one drop at a time.
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4">About <span className="text-heading">BloodBridge</span></h1>
+                    <p className="text-xl mb-6 max-w-3xl mx-auto text-white/90">
+                        Connecting donors with those in need, one drop at a time.
                     </p>
                 </div>
             </div>
@@ -156,14 +156,14 @@ const AboutUs = () => {
                     <div className="bg-linear-to-br from-secondary/5 to-secondary/10 rounded-3xl p-10 h-full border-2 border-secondary/20 hover:border-secondary/40 hover:shadow-md transition-colors">
                         <div className='flex gap-4 items-center'>
                             <div className="p-4 bg-secondary/30 rounded-2xl mb-6">
-                                <FaEye className="text-5xl text-secondary" />
+                                <FaEye className="text-5xl text-heading" />
                             </div>
-                            <h3 className="text-4xl font-bold text-secondary mb-6">Our Vision</h3>
+                            <h3 className="text-4xl font-bold text-heading mb-6">Our Vision</h3>
                         </div>
 
                         <p className="text-lg leading-relaxed text-base-content/80">
                             To build Bangladesh's largest community of voluntary blood donors, where
-                            <strong className="text-secondary"> every district, every upazila has a network of heroes</strong> ready
+                            <strong className="text-heading"> every district, every upazila has a network of heroes</strong> ready
                             to save lives. We envision a future where blood shortages are a thing of the past.
                         </p>
 
@@ -232,10 +232,10 @@ const AboutUs = () => {
                                     </div>
 
                                     <div className="p-8">
-                                        <h3 className="text-2xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">
+                                        <h3 className="text-2xl font-bold text-primary mb-2 group-hover:text-heading transition-colors">
                                             {member.name}
                                         </h3>
-                                        <p className="text-secondary font-semibold mb-4 text-sm uppercase tracking-wide">
+                                        <p className="text-heading font-semibold mb-4 text-sm uppercase tracking-wide">
                                             {member.role}
                                         </p>
                                         <p className="text-base-content/70 leading-relaxed">

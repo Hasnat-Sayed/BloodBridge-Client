@@ -37,7 +37,7 @@ const DonationRequests = () => {
                                     <div className="card-body">
 
                                         <div className="flex justify-between items-start pb-3 border-b border-secondary/30">
-                                            <h3 className="font-bold text-2xl  text-secondary">{request.recipient_name}</h3>
+                                            <h3 className="font-bold text-2xl  text-heading">{request.recipient_name}</h3>
                                             <div className="badge badge-primary badge-lg font-bold text-lg px-4 py-4">
                                                 {request?.blood_group}
                                             </div>

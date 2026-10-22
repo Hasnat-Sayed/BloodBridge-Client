@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router';
 import { MdDashboard, MdArticle, MdLogout, MdMenu, MdClose, MdAddCircleOutline, MdHome } from 'react-icons/md';
 import { FaUserPlus, FaChartLine, FaUsers, FaStar } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
+import ThemeToggle from './ThemeToggle';
 import Loading from './Loading';
 
 const Aside = () => {
@@ -113,7 +114,7 @@ const Aside = () => {
                                                 `gap-3 py-3 ${isActive ? 'bg-primary text-primary-content' : ''}`
                                             }
                                         >
-                                            <FaStar  className="text-xl" />Write a Review
+                                            <FaStar className="text-xl" />Write a Review
                                         </NavLink>
                                     </li>
                                 </>
@@ -180,7 +181,11 @@ const Aside = () => {
 
                 </nav>
 
-                <div className="p-4 border-t border-secondary-content/40">
+                <div className="p-4 border-t border-secondary-content/30 space-y-3">
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm opacity-80">Theme</span>
+                        <ThemeToggle />
+                    </div>
                     <Link
                         to='/'
                         className="btn btn-accent btn-block gap-2"

@@ -52,13 +52,13 @@ const ReviewSlider = () => {
             ))}
         </div>
     );
-    if(loading) return <Loading></Loading>
+    if (loading) return <Loading></Loading>
 
     return (
         <div className="bg-base-300 py-16">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-heading mb-4">
                         What Our <span className='text-primary'>Users Say</span>
                     </h2>
 

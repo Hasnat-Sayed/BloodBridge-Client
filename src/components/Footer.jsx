@@ -10,8 +10,8 @@ const Footer = () => {
             <div className="bg-secondary text-secondary-content p-10 px-4 lg:px-20">
                 <div className="flex flex-col md:flex-row md:justify-between gap-8">
                     <aside className='max-w-sm'>
-                        <img src="https://img.icons8.com/?size=100&id=26115&format=png&color=000000" className="w-12 h-12" alt="" />
-                        <p className='font-bold text-2xl mt-1 text-primary'>
+                        <img src="https://img.icons8.com/?size=100&id=26115&format=png&color=FF6B76" className="w-12 h-12" alt="" />
+                        <p className='font-bold text-2xl mt-1 text-brand-light'>
                             Blood <span className='text-secondary-content/80'>Bridge</span>
                         </p>
                         <p className='opacity-80 mt-1'>
@@ -20,7 +20,7 @@ const Footer = () => {
                     </aside>
 
                     <nav>
-                        <h6 className="footer-title text-lg text-primary mb-4">Quick Links</h6>
+                        <h6 className="footer-title text-lg text-brand-light mb-4">Quick Links</h6>
                         <div className="flex flex-col gap-2">
                             <Link to="/" className="link link-hover opacity-80 hover:opacity-100">Home</Link>
                             <Link to="/pending-requests" className="link link-hover opacity-80 hover:opacity-100">Donation Requests</Link>
@@ -30,44 +30,44 @@ const Footer = () => {
                     </nav>
 
                     <nav>
-                        <h6 className="footer-title text-lg text-primary mb-4">Contact Us</h6>
+                        <h6 className="footer-title text-lg text-brand-light mb-4">Contact Us</h6>
                         <div className="flex flex-col gap-2">
                             <a className="link link-hover opacity-80 hover:opacity-100 flex items-center gap-2">
-                                <MdEmail className="text-lg text-primary" />
+                                <MdEmail className="text-lg text-brand-light" />
                                 <span>info@bloodbridge.com</span>
                             </a>
                             <a className="link link-hover opacity-80 hover:opacity-100 flex items-center gap-2">
-                                <MdPhone className="text-lg text-primary" />
+                                <MdPhone className="text-lg text-brand-light" />
                                 <span>+880-1234567890</span>
                             </a>
                             <a className="link link-hover opacity-80 hover:opacity-100 flex items-center gap-2">
-                                <MdLocationOn className="text-lg text-primary" />
+                                <MdLocationOn className="text-lg text-brand-light" />
                                 <span>Chittagong, Bangladesh</span>
                             </a>
                         </div>
                     </nav>
 
                     <nav>
-                        <h6 className="footer-title text-lg text-primary mb-4">Follow Us</h6>
+                        <h6 className="footer-title text-lg text-brand-light mb-4">Follow Us</h6>
                         <div className="flex gap-4">
                             <a
                                 href="https://facebook.com"
                                 target="_blank"
-                                className="link link-hover opacity-80 hover:opacity-100 hover:text-primary transition-all"
+                                className="link link-hover opacity-80 hover:opacity-100 hover:text-brand-light transition-all"
                             >
                                 <FaFacebookF className='text-2xl' />
                             </a>
                             <a
                                 href="https://twitter.com"
                                 target="_blank"
-                                className="link link-hover opacity-80 hover:opacity-100 hover:text-primary transition-all"
+                                className="link link-hover opacity-80 hover:opacity-100 hover:text-brand-light transition-all"
                             >
                                 <FaXTwitter className='text-2xl' />
                             </a>
                             <a
                                 href="https://instagram.com"
                                 target="_blank"
-                                className="link link-hover opacity-80 hover:opacity-100 hover:text-primary transition-all"
+                                className="link link-hover opacity-80 hover:opacity-100 hover:text-brand-light transition-all"
                             >
                                 <FaInstagram className='text-2xl' />
                             </a>

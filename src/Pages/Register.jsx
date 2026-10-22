@@ -176,7 +176,7 @@ const Register = () => {
                 <form onSubmit={handleSubmit} className="card-body">
                     <fieldset className="fieldset md:px-20">
 
-                        <label className="label text-secondary font-semibold">Email</label>
+                        <label className="label text-heading font-semibold">Email</label>
                         <input
                             name="email"
                             type="email"
@@ -185,7 +185,7 @@ const Register = () => {
                             required
                         />
 
-                        <label className="label text-secondary font-semibold">Name</label>
+                        <label className="label text-heading font-semibold">Name</label>
                         <input
                             name="name"
                             type="text"
@@ -194,7 +194,7 @@ const Register = () => {
                             required
                         />
 
-                        <label className="label text-secondary font-semibold">Photo</label>
+                        <label className="label text-heading font-semibold">Photo</label>
                         <input
                             name="photo"
                             type="file"
@@ -202,7 +202,7 @@ const Register = () => {
                             required
                         />
 
-                        <label className="label text-secondary font-semibold">Blood Group</label>
+                        <label className="label text-heading font-semibold">Blood Group</label>
                         <select name="blood" defaultValue="Choose Blood Group" className="select w-full bg-base-200">
                             <option disabled={true}>Choose Blood Group</option>
                             <option value="A+">A+</option>
@@ -215,7 +215,7 @@ const Register = () => {
                             <option value="AB-">AB-</option>
                         </select>
 
-                        <label className="label text-secondary font-semibold">Your District</label>
+                        <label className="label text-heading font-semibold">Your District</label>
                         <select value={district} onChange={(e) => setDistrict(e.target.value)} className="select w-full bg-base-200">
                             <option disabled value=''>Select Your District</option>
                             {
@@ -223,7 +223,7 @@ const Register = () => {
                             }
                         </select>
 
-                        <label className="label text-secondary font-semibold">Your Upazila</label>
+                        <label className="label text-heading font-semibold">Your Upazila</label>
                         <select value={upazila} onChange={(e) => setUpazila(e.target.value)} className="select w-full bg-base-200">
                             <option disabled value=''>Select Your Upazila</option>
                             {
@@ -234,7 +234,7 @@ const Register = () => {
 
 
                         <div className='relative'>
-                            <label className="label text-secondary font-semibold">Password</label>
+                            <label className="label text-heading font-semibold">Password</label>
                             <input
                                 name="password"
                                 type={show ? "text" : "password"}

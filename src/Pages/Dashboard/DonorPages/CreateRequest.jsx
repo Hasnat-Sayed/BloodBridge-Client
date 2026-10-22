@@ -91,7 +91,7 @@ const CreateRequest = () => {
 
             <form onSubmit={handleRequest} className="space-y-4">
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Requester Name</label>
+                    <label className="label text-heading font-semibold text-xl">Requester Name</label>
                     <input
                         type="text"
                         name="requester_name"
@@ -103,7 +103,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Requester Email</label>
+                    <label className="label text-heading font-semibold text-xl">Requester Email</label>
                     <input
                         type="email"
                         name="requester_email"
@@ -115,7 +115,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Recipient Name</label>
+                    <label className="label text-heading font-semibold text-xl">Recipient Name</label>
                     <input
                         type="text"
                         name="recipient_name"
@@ -126,7 +126,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Recipient District</label>
+                    <label className="label text-heading font-semibold text-xl">Recipient District</label>
                     <select
                         name="recipientDistrict"
                         className="select select-bordered w-full rounded-xl bg-base-200"
@@ -140,7 +140,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Recipient Upazila</label>
+                    <label className="label text-heading font-semibold text-xl">Recipient Upazila</label>
                     <select
                         name="recipientUpazila"
                         className="select select-bordered w-full rounded-xl bg-base-200"
@@ -154,7 +154,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Hospital Name</label>
+                    <label className="label text-heading font-semibold text-xl">Hospital Name</label>
                     <input
                         type="text"
                         name="hospital_name"
@@ -165,7 +165,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Full Address Line</label>
+                    <label className="label text-heading font-semibold text-xl">Full Address Line</label>
                     <input
                         type="text"
                         name="full_address"
@@ -176,7 +176,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Blood Group</label>
+                    <label className="label text-heading font-semibold text-xl">Blood Group</label>
                     <select
                         name="blood_group"
                         className="select select-bordered w-full rounded-xl bg-base-200"
@@ -195,7 +195,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Donation Date</label>
+                    <label className="label text-heading font-semibold text-xl">Donation Date</label>
                     <input
                         type="date"
                         name="donation_date"
@@ -205,7 +205,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Donation Time</label>
+                    <label className="label text-heading font-semibold text-xl">Donation Time</label>
                     <input
                         type="time"
                         name="donation_time"
@@ -215,7 +215,7 @@ const CreateRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Request Message</label>
+                    <label className="label text-heading font-semibold text-xl">Request Message</label>
                     <textarea
                         name="request_message"
                         rows="5"

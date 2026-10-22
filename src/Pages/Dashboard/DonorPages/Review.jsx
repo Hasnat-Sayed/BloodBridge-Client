@@ -60,7 +60,7 @@ const Review = () => {
 
                 </div>
 
-                <p className="text-center text-sm text-gray-600 mb-6">
+                <p className="text-center text-sm text-base-content/80 mb-6">
                     Share your experience with our blood donation platform
                 </p>
 
@@ -78,7 +78,7 @@ const Review = () => {
                     <fieldset className="fieldset md:px-20">
                         <div className="mb-4">
                             <label className="label flex justify-center">
-                                <span className="text-secondary font-semibold text-lg">
+                                <span className="text-heading font-semibold text-lg">
                                     Your Rating
                                 </span>
                             </label>
@@ -96,7 +96,7 @@ const Review = () => {
                                             className={
                                                 star <= rating
                                                     ? 'text-yellow-500'
-                                                    : 'text-gray-300'
+                                                    : 'text-base-300'
                                             }
                                         />
                                     </button>
@@ -106,7 +106,7 @@ const Review = () => {
 
                         <div className="flex justify-center flex-col gap-2 items-center mb-4">
                             <label className="label flex justify-center">
-                                <span className="label-text text-secondary font-semibold text-lg">
+                                <span className="label-text text-heading font-semibold text-lg">
                                     Your Feedback
                                 </span>
                             </label>
@@ -120,7 +120,7 @@ const Review = () => {
                             />
 
                             <label className="label">
-                                <span className="label-text-alt text-gray-500">
+                                <span className="label-text-alt text-base-content/70">
                                     {comment.length} characters
                                 </span>
                             </label>

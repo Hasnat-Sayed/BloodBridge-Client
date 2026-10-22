@@ -91,7 +91,7 @@ const EditRequest = () => {
                     draggable: true
                 });
                 navigation(-1);
-                
+
             })
             .catch(err => {
                 console.log(err);
@@ -113,7 +113,7 @@ const EditRequest = () => {
 
             <form onSubmit={handleUpdate} className="space-y-4">
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Requester Name</label>
+                    <label className="label text-heading font-semibold text-xl">Requester Name</label>
                     <input
                         type="text"
                         name="requester_name"
@@ -125,7 +125,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Requester Email</label>
+                    <label className="label text-heading font-semibold text-xl">Requester Email</label>
                     <input
                         type="email"
                         name="requester_email"
@@ -137,7 +137,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Recipient Name</label>
+                    <label className="label text-heading font-semibold text-xl">Recipient Name</label>
                     <input
                         type="text"
                         defaultValue={req?.recipient_name}
@@ -149,7 +149,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Recipient District</label>
+                    <label className="label text-heading font-semibold text-xl">Recipient District</label>
                     <select
                         name="recipientDistrict"
 
@@ -164,7 +164,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Recipient Upazila</label>
+                    <label className="label text-heading font-semibold text-xl">Recipient Upazila</label>
                     <select
                         name="recipientUpazila"
                         className="select select-bordered w-full rounded-xl bg-base-200"
@@ -178,7 +178,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Hospital Name</label>
+                    <label className="label text-heading font-semibold text-xl">Hospital Name</label>
                     <input
                         type="text"
                         name="hospital_name"
@@ -190,7 +190,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Full Address Line</label>
+                    <label className="label text-heading font-semibold text-xl">Full Address Line</label>
                     <input
                         type="text"
                         name="full_address"
@@ -202,7 +202,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Blood Group</label>
+                    <label className="label text-heading font-semibold text-xl">Blood Group</label>
                     <select
                         name="blood_group"
                         value={group}
@@ -223,7 +223,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Donation Date</label>
+                    <label className="label text-heading font-semibold text-xl">Donation Date</label>
                     <input
                         type="date"
                         name="donation_date"
@@ -234,7 +234,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Donation Time</label>
+                    <label className="label text-heading font-semibold text-xl">Donation Time</label>
                     <input
                         type="time"
                         name="donation_time"
@@ -245,7 +245,7 @@ const EditRequest = () => {
                 </div>
 
                 <div>
-                    <label className="label text-secondary font-semibold text-xl">Request Message</label>
+                    <label className="label text-heading font-semibold text-xl">Request Message</label>
                     <textarea
                         name="request_message"
                         defaultValue={req?.request_message}

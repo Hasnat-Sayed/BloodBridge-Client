@@ -14,14 +14,14 @@ const Banner = () => {
     const slides = [ban1, ban3, ban2, ban4];
 
     return (
-        <div className="relative">
+        <div className="relative h-[65vh]">
             <Swiper
                 modules={[Autoplay]}
                 autoplay={{ delay: 2000, disableOnInteraction: false }}
                 loop={true}
                 speed={1000}
                 spaceBetween={0}
-                className="h-125 md:h-150"
+                className="h-[65vh]"
             >
                 {slides.map((image, index) => (
                     <SwiperSlide key={index}>
@@ -35,21 +35,21 @@ const Banner = () => {
 
             <div className="absolute inset-0 z-10 flex items-center justify-center">
                 <div className="text-center text-white px-4">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3">
                         Save Lives, <span className="text-primary">Donate Blood</span>
                     </h1>
-                    <p className="text-xl text-white/80 md:text-2xl mb-8">
+                    <p className="text-lg text-white/90 md:text-2xl mb-6">
                         Every drop counts. Join us in making a difference today.
                     </p>
                     <div className="flex gap-4 justify-center">
 
                         <Link to="/register">
-                            <button className="btn btn-primary btn-lg">
+                            <button className="btn btn-primary btn-md md:btn-lg">
                                 Join as Donor
                             </button>
                         </Link>
                         <Link to="/search">
-                            <button className="btn btn-outline btn-lg text-white border-white hover:bg-white hover:text-primary">
+                            <button className="btn btn-outline btn-md md:btn-lg text-white border-white hover:bg-white hover:text-[#2B2D42]">
                                 Search Donors
                             </button>
                         </Link>

@@ -61,7 +61,7 @@ const SearchRequest = () => {
                                 <div className="w-full">
 
 
-                                    <label className="label text-secondary font-semibold">BLOOD GROUP</label>
+                                    <label className="label text-heading font-semibold">BLOOD GROUP</label>
                                     <select name="blood" defaultValue="Choose Blood Group" className="select w-full bg-base-200 rounded-xl">
 
                                         <option disabled={true}>Choose Blood Group</option>
@@ -78,7 +78,7 @@ const SearchRequest = () => {
 
                                 <div className="w-full">
 
-                                    <label className="label text-secondary font-semibold">DISTRICT</label>
+                                    <label className="label text-heading font-semibold">DISTRICT</label>
                                     <select value={district} onChange={(e) => setDistrict(e.target.value)} className="select w-full bg-base-200 rounded-xl">
                                         <option disabled value=''>Select District</option>
                                         {
@@ -88,7 +88,7 @@ const SearchRequest = () => {
                                 </div>
 
                                 <div className="w-full">
-                                    <label className="label text-secondary font-semibold">UPAZILLA</label>
+                                    <label className="label text-heading font-semibold">UPAZILLA</label>
                                     <select value={upazila} onChange={(e) => setUpazila(e.target.value)} className="select w-full bg-base-200 rounded-xl">
                                         <option disabled value=''>Select Upazila</option>
                                         {
@@ -109,7 +109,7 @@ const SearchRequest = () => {
 
                 <div className=" py-12">
                     <div className="mb-6">
-                        <h2 className="text-3xl font-bold text-secondary">
+                        <h2 className="text-3xl font-bold text-heading">
                             Search Results
                             <span className="text-primary ml-3">
                                 {searchResults.length >= 0 && `(${searchResults.length})`}
@@ -141,7 +141,7 @@ const SearchRequest = () => {
                                                     </div>
                                                 </div>
                                                 <div className="flex-1">
-                                                    <h3 className="font-semibold text-2xl text-secondary">{donor?.name}</h3>
+                                                    <h3 className="font-semibold text-2xl text-heading">{donor?.name}</h3>
                                                     <div className="badge badge-primary badge-lg font-bold text-lg mt-1 px-3 py-3">
                                                         <FaTint className="mr-1" />
                                                         {donor?.blood}
@@ -163,7 +163,7 @@ const SearchRequest = () => {
 
                                                 </div>
                                                 <div className="flex items-center gap-2 text-base-content/80 border-b border-secondary/30 pb-2">
-                                                    <FaMapMarkerAlt className="text-secondary text-xl" />
+                                                    <FaMapMarkerAlt className="text-heading text-xl" />
                                                     <span className="font-medium text-lg">
                                                         District: {donor?.district}
                                                     </span>
