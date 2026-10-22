@@ -27,7 +27,7 @@ const ChartCard = ({ title, children, className = '' }) => (
 );
 
 const Empty = () => (
-    <div className="h-full flex items-center justify-center text-base-content/70">No data yet</div>
+    <div className="text-xl h-full flex items-center justify-center text-base-content/70">No data yet</div>
 );
 
 const DashboardCharts = ({ requests = [], funds = [], showFunding = false }) => {

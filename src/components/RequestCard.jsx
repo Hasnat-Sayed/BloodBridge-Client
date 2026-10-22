@@ -4,7 +4,7 @@ import { FaMapMarkerAlt, FaCalendarAlt, FaClock } from 'react-icons/fa';
 
 // shared card (home + /pending-requests)
 const RequestCard = ({ request: r }) => (
-    <div className="group card h-full bg-base-100 border border-primary border-l-4 border-b-4 border-l-primary  hover:border-primary hover:-translate-y-2 hover:shadow-xl transition-all duration-300 shadow-md hover:shadow-primary/25">
+    <div className="group card h-full bg-base-100 border border-primary border-l-4  border-l-primary  hover:border-primary hover:-translate-y-2 hover:shadow-xl transition-all duration-300 shadow-md hover:shadow-primary/25">
         <div className="card-body">
             <div className="flex justify-between items-center">
                 <h3 className="font-bold text-xl text-heading">{r.recipient_name}</h3>

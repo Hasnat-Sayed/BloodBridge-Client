@@ -9,6 +9,7 @@ import {
     FaDonate,
     FaTachometerAlt
 } from 'react-icons/fa';
+import SectionTitle from './home/SectionTitle';
 
 const Featured = () => {
     const features = [
@@ -60,14 +61,7 @@ const Featured = () => {
     return (
         <div className="bg-base-200 ">
             <div className="container mx-auto px-4 py-16 lg:px-20">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-5xl font-bold text-heading mb-4">
-                        Why Choose <span className="text-primary">Blood Bridge?</span>
-                    </h2>
-                    <p className="text-lg text-base-content/70 max-w-3xl mx-auto">
-                        Discover the features that make Blood Bridge the most trusted platform for blood donation
-                    </p>
-                </div>
+                <SectionTitle title="Why Choose" highlight="Blood Bridge?" subtitle="Discover the features that make Blood Bridge the most trusted platform for blood donation." />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {features.map((feature, index) => (

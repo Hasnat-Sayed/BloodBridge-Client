@@ -17,7 +17,7 @@ const Aside = () => {
         <>
             <button
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 btn btn-circle btn-primary shadow-lg"
+                className="lg:hidden fixed top-3 left-4 z-50 btn btn-circle btn-primary shadow-lg"
             >
                 {isSidebarOpen ? <MdClose className="text-2xl" /> : <MdMenu className="text-2xl" />}
             </button>
@@ -33,15 +33,15 @@ const Aside = () => {
                 className={`
                     fixed inset-y-0 left-0 z-40 w-64 bg-secondary text-secondary-content transform transition-transform duration-300 ease-in-out 
                     ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} 
-                    flex flex-col h-screen overflow-hidden
+                    flex flex-col h-screen overflow-hidden border-r border-secondary-content/30
                 `}
             >
-                <div className="mt-12 lg:mt-0 p-6 border-b border-secondary-content/40">
+                <div className="mt-12 lg:mt-0 px-4 py-4 lg:py-0 lg:h-16 flex items-center border-b border-secondary-content/30">
                     <div className="flex items-center gap-2">
-                        <img src="https://img.icons8.com/?size=100&id=26115&format=png&color=E63946" className="w-12 h-12" alt="" />
+                        <img src="https://img.icons8.com/?size=100&id=26115&format=png&color=E63946" className="w-10 h-10 lg:w-9 lg:h-9" alt="" />
                         <div>
-                            <h1 className="text-xl font-bold">Blood Bridge</h1>
-                            <p className="text-xs mt-1 opacity-70">
+                            <h1 className="text-lg font-bold leading-tight">Blood Bridge</h1>
+                            <p className="text-xs mt-0.5 leading-tight opacity-70">
                                 {role == 'admin' && 'Admin Dashboard'}
                                 {role == 'donor' && 'Donor Dashboard'}
                                 {role == 'volunteer' && 'Volunteer Dashboard'}

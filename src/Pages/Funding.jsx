@@ -3,8 +3,6 @@ import { FaHeart, FaHandHoldingHeart, FaRegClock } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
 import useAxios from '../hooks/useAxios';
 import useAxiosSecure from '../hooks/useAxiosSecure';
-import Loading from '../components/Loading';
-
 const Funding = () => {
     const { user } = useContext(AuthContext);
     const axiosInstance = useAxios()
@@ -24,7 +22,38 @@ const Funding = () => {
 
     // console.log(funds)
 
-
+const SkeletonTable = () => (
+    <div className="overflow-x-auto w-full">
+        <table className="table w-full">
+            <thead>
+                <tr className="bg-secondary text-lg text-white">
+                    <th className="w-16"></th>
+                    <th>Donor Email</th>
+                    <th>Amount</th>
+                    <th>Funding Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {[...Array(5)].map((_, i) => (
+                    <tr key={i} className="hover">
+                        <td>
+                            <div className="skeleton h-4 w-4"></div>
+                        </td>
+                        <td>
+                            <div className="skeleton h-4 w-48"></div>
+                        </td>
+                        <td>
+                            <div className="skeleton h-4 w-16"></div>
+                        </td>
+                        <td>
+                            <div className="skeleton h-4 w-24"></div>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+);
 
     const handleCheckout = (e) => {
         e.preventDefault();
@@ -47,16 +76,16 @@ const Funding = () => {
             })
     }
 
-    if (loading) return (<Loading></Loading>)
+    // if (loading) return (<Loading></Loading>)
 
 
     return (
 
         <div className='bg-base-200'>
-            <div className="bg-linear-to-b from-[#D62839] to-[#2B2D42] text-white py-10">
+            <div className="bg-linear-to-b from-[#D62839] to-[#0d0e1a] text-white py-10 border-primary border-b-2">
                 <div className="px-4 text-center">
                     <FaHeart className="text-6xl mx-auto mb-4 animate-pulse" />
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Support Blood Bridge</h1>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Support <span className="text-primary">Blood Bridge</span></h1>
                     <p className="text-xl mb-6 max-w-3xl mx-auto text-white/90">
                         Your contribution helps us save lives by connecting donors with those in need
                     </p>
@@ -116,7 +145,7 @@ const Funding = () => {
                             </div>
                         </div>
 
-                        <div className="flex-1 card bg-base-100 shadow-lg rounded-2xl  border border-secondary/10">
+                        <div className="flex-1 bg-linear-to-bl from-secondary-45 to-primary/20 card bg-primary/15 shadow-lg shadow-primary/50 border-primary rounded-2xl border">
 
                             <form onSubmit={handleCheckout} className="card-body ">
                                 <h3 className="text-4xl font-bold text-center mt-8 mb-3 text-primary">
@@ -129,7 +158,7 @@ const Funding = () => {
                                         name="email"
                                         type="email"
                                         defaultValue={user?.email}
-                                        className="input w-full bg-base-200 rounded-xl"
+                                        className="input w-full bg-base-100 rounded-xl"
                                         readOnly
                                     />
 
@@ -137,7 +166,7 @@ const Funding = () => {
                                     <input
                                         name="donateAmount"
                                         type="text"
-                                        className="input w-full bg-base-200 rounded-xl"
+                                        className="input w-full bg-base-100 rounded-xl"
                                         placeholder="Enter Donation Amount in Dollar"
                                         required
                                     />
@@ -161,7 +190,9 @@ const Funding = () => {
                     <div className="text-center pb-6">
                         <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Funding Details</h3>
                     </div>
-                    <div className="overflow-x-auto rounded-box border shadow-2xl">
+                    {
+                    loading ? SkeletonTable() : (
+                        <div className="overflow-x-auto rounded-box border shadow-2xl">
                         <table className="table">
                             <thead className='bg-base-300 text-lg'>
                                 <tr className='bg-secondary text-secondary-content'>
@@ -189,11 +220,9 @@ const Funding = () => {
                             </tbody>
                         </table>
                     </div>
+                    )
+                }
                 </div>
-
-
-
-
             </div>
         </div>
     );

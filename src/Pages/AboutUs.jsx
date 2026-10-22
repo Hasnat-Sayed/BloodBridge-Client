@@ -27,12 +27,6 @@ const AboutUs = () => {
         }
     ];
 
-    const stats = [
-        { number: "5,000+", label: "Lives Saved", icon: <FaHeart /> },
-        { number: "50+", label: "Partner Hospitals", icon: <FaHandHoldingHeart /> },
-        { number: "24/7", label: "Emergency Support", icon: <FaBullseye /> }
-    ];
-
     const values = [
         {
             title: "Compassion",
@@ -59,39 +53,17 @@ const AboutUs = () => {
     return (
         <div className="min-h-screen">
 
-            <div className="bg-linear-to-b from-[#D62839] to-[#2B2D42] text-white py-10">
+            <div className="bg-linear-to-b from-[#D62839] to-[#0d0e1a] text-white py-10 border-primary border-b-2">
                 <div className="px-4 text-center">
                     <FaInfoCircle className="text-6xl mx-auto mb-4 animate-pulse" />
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">About <span className="text-heading">BloodBridge</span></h1>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4">About <span className="text-primary">Blood Bridge</span></h1>
                     <p className="text-xl mb-6 max-w-3xl mx-auto text-white/90">
                         Connecting donors with those in need, one drop at a time.
                     </p>
                 </div>
             </div>
 
-            <div className="bg-base-200 container mx-auto px-4 py-16 lg:px-20">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {stats.map((stat, index) => (
-                        <div key={index} className="">
-
-                            <div className="bg-linear-to-br from-secondary/35   rounded-2xl p-6 text-center transform hover:shadow-secondary/60 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 shadow-md ">
-                                <div className="text-4xl mb-2 flex justify-center text-primary">
-                                    {stat.icon}
-                                </div>
-                                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                                    {stat.number}
-                                </div>
-                                <div className="text-base-content/70 font-medium">
-                                    {stat.label}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-            </div>
-
-            <div className="bg-base-300 pt-20 pb-5">
+            <div className="bg-base-200 pt-20 pb-5">
                 <div className="container mx-auto px-4">
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-12">
@@ -113,7 +85,7 @@ const AboutUs = () => {
 
                             <div className="space-y-6">
                                 <p className="text-lg leading-relaxed text-base-content/80">
-                                    BloodBridge was born from a simple yet powerful idea: <strong className="text-primary">no one should struggle to find blood in an emergency</strong>.
+                                    BloodBridge was born from a simple yet powerful idea:  <strong className="text-primary">that no one should struggle to find blood in an emergency</strong>.
                                 </p>
                                 <p className="text-lg leading-relaxed text-base-content/80">
                                     Founded in 2025, we've built a platform that instantly connects those who need blood with willing donors across Bangladesh. Our technology-driven approach has revolutionized how communities respond to blood donation requests.
@@ -133,13 +105,13 @@ const AboutUs = () => {
                 </div>
             </div>
 
-            <div className="bg-base-300 py-20 container mx-auto px-4  lg:px-20">
+            <div className="bg-base-200 py-20 container mx-auto px-4  lg:px-20">
 
                 <div className="grid md:grid-cols-2 gap-8">
 
-                    <div className="bg-linear-to-br from-primary/5 to-primary/10 rounded-3xl p-10 h-full border-2 border-primary/20 hover:border-primary/40 hover:shadow-md transition-colors">
+                    <div className="bg-linear-to-br from-primary/25 to-secondary/10 rounded-3xl p-10 h-full border-2 border-primary/20 hover:border-primary/40 hover:shadow-md hover:shadow-primary transition-colors">
                         <div className='flex gap-4 items-center'>
-                            <div className="p-4 bg-primary/30 rounded-2xl mb-6">
+                            <div className="p-4 bg-base-200/40 rounded-2xl mb-6">
                                 <FaBullseye className="text-5xl text-primary" />
                             </div>
                             <h3 className="text-4xl font-bold text-primary mb-6">Our Mission</h3>
@@ -153,7 +125,7 @@ const AboutUs = () => {
 
                     </div>
 
-                    <div className="bg-linear-to-br from-secondary/5 to-secondary/10 rounded-3xl p-10 h-full border-2 border-secondary/20 hover:border-secondary/40 hover:shadow-md transition-colors">
+                    <div className="bg-linear-to-br from-accent/55 to-secondary/10 rounded-3xl p-10 h-full border-2 border-secondary/20 hover:border-secondary/40 hover:shadow-md hover:shadow-accent transition-colors">
                         <div className='flex gap-4 items-center'>
                             <div className="p-4 bg-secondary/30 rounded-2xl mb-6">
                                 <FaEye className="text-5xl text-heading" />
@@ -174,7 +146,7 @@ const AboutUs = () => {
             </div>
 
             {/* Core Values */}
-            <div className="bg-base-200 py-20 container mx-auto px-4  lg:px-20">
+            <div className="bg-base-300 py-20 container mx-auto px-4  lg:px-20">
 
                 <div className="text-center mb-8">
                     <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
@@ -188,7 +160,7 @@ const AboutUs = () => {
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {values.map((value, index) => (
                         <div key={index} className="group">
-                            <div className="bg-base-100 rounded-2xl p-8 text-center h-full shadow-lg border-2 border-primary/80 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                            <div className="bg-base-200 rounded-2xl p-8 text-center h-full shadow-lg border-2 border-primary/80 hover:shadow-2xl hover:shadow-primary transition-all duration-300 transform hover:-translate-y-2">
                                 <div className="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                                     {value.icon}
                                 </div>
@@ -205,7 +177,7 @@ const AboutUs = () => {
 
             </div>
 
-            <div className="bg-base-300 py-20 container mx-auto px-4  lg:px-20">
+            <div className="bg-base-200 py-20 container mx-auto px-4 lg:px-20">
                 <div className="text-center mb-8">
                     <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                         Meet Our Team

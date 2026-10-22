@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import Aside from '../../components/Aside';
+import DashboardTopbar from '../../components/DashboardTopbar';
 
 const DashboardLayout = () => {
     return (
@@ -8,7 +9,8 @@ const DashboardLayout = () => {
             <Aside />
 
             <div className="flex-1 lg:ml-64 overflow-y-auto">
-                <div className="p-5 lg:p-6 pt-20 lg:pt-6 min-h-full">
+                <DashboardTopbar />
+                <div className="p-5 lg:p-6 min-h-[calc(100%-4rem)]">
                     <Outlet />
                 </div>
             </div>

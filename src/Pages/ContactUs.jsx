@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { MdContactPhone } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 const ContactUs = () => {
@@ -56,21 +57,21 @@ const ContactUs = () => {
 
     return (
 
-        <div className="bg-[#D62839]">
-            <div className="container mx-auto px-4 py-16 lg:px-20">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Get In <span className="text-white">Touch</span>
-                    </h2>
-                    <p className="text-lg text-white max-w-2xl mx-auto">
+        <div className="bg-base-200">
+            <div className="bg-linear-to-b from-[#D62839] to-[#0d0e1a] text-white py-10 border-primary border-b-2">
+                <div className="px-4 text-center">
+                    <MdContactPhone className="text-6xl mx-auto mb-4 animate-pulse" />
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4"> Get In <span className="text-primary">Touch</span></h2>
+                    <p className="text-xl mb-6 max-w-3xl mx-auto text-white/90">
                         Have questions? We're here to help. Reach out to us anytime!
                     </p>
                 </div>
+            </div>
 
-
+            <div className="container mx-auto px-4 py-16 lg:px-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mx-auto">
                     <div className="space-y-6">
-                        <div className="card bg-base-200 shadow-xl shadow-secondary border  border-secondary">
+                        <div className="card bg-base-100 shadow-xl shadow-secondary border  border-secondary">
                             <div className="card-body">
                                 <h3 className="text-3xl font-bold text-heading mb-6">
                                     Contact Information
@@ -144,7 +145,7 @@ const ContactUs = () => {
                         </div>
                     </div>
 
-                    <div className="card bg-base-200 shadow-xl shadow-secondary border  border-secondary">
+                    <div className="card bg-base-100 shadow-xl shadow-secondary border  border-secondary">
                         <div className="card-body">
                             <h3 className="text-3xl font-bold text-heading mb-6">
                                 Send Us a Message
@@ -160,7 +161,7 @@ const ContactUs = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="input input-bordered w-full rounded-xl bg-base-100"
+                                        className="input input-bordered w-full rounded-xl bg-base-200"
                                         placeholder="Enter your name"
                                     />
                                 </div>
@@ -174,7 +175,7 @@ const ContactUs = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="input input-bordered w-full rounded-xl bg-base-100"
+                                        className="input input-bordered w-full rounded-xl bg-base-200"
                                         placeholder="your.email@example.com"
                                     />
 
@@ -189,7 +190,7 @@ const ContactUs = () => {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className="input input-bordered w-full rounded-xl bg-base-100"
+                                        className="input input-bordered w-full rounded-xl bg-base-200"
                                         placeholder="+880 1234-567890"
                                     />
                                 </div>
@@ -203,14 +204,14 @@ const ContactUs = () => {
                                         value={formData.message}
                                         onChange={handleChange}
                                         rows="4"
-                                        className="textarea textarea-bordered w-full rounded-xl bg-base-100"
+                                        className="textarea textarea-bordered w-full rounded-xl bg-base-200"
                                         placeholder="Write your message here..."
                                     ></textarea>
                                 </div>
 
                                 <button
                                     onClick={handleSubmit}
-                                    className="btn btn-lg btn-secondary w-full rounded-xl text-lg"
+                                    className="btn btn-lg btn-accent w-full rounded-xl text-lg"
                                 >
                                     Send Message
                                 </button>

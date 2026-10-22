@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaUsers, FaDonate, FaTint, FaHourglassHalf, FaCheckCircle, FaUserFriends, FaSpinner } from 'react-icons/fa';
+import { FaUsers, FaDonate, FaTint, FaHourglassHalf, FaCheckCircle, FaUserFriends, FaSpinner, FaExclamationCircle } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Loading from '../Loading';
 import StatCard from './StatCard';
@@ -42,7 +42,9 @@ const DashboardOverview = ({ role }) => {
             { icon: <FaDonate />, label: 'Total Funding', value: stats.totalFunds, prefix: '$' },
             { icon: <FaTint />, label: 'Blood Requests', value: stats.totalRequest },
             { icon: <FaHourglassHalf />, label: 'Pending Requests', value: count(requests, 'pending') },
+            { icon: <FaSpinner />, label: 'In Progress', value: count(requests, 'inprogress') },
             { icon: <FaCheckCircle />, label: 'Completed Donations', value: count(requests, 'done') },
+            { icon: <FaExclamationCircle />, label: 'Cancelled', value: count(requests, 'canceled') },
         ],
         volunteer: [
             { icon: <FaUsers />, label: 'Total Donors', value: stats.totalDonors },
@@ -62,7 +64,7 @@ const DashboardOverview = ({ role }) => {
             <h3 className="text-2xl md:text-4xl font-bold text-heading text-center mb-6">
                 Dashboard <span className="text-primary">Overview</span>
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
                 {cards.map(c => <StatCard key={c.label} {...c} />)}
             </div>
             <DashboardCharts requests={requests} funds={funds} showFunding={role === 'admin'} />
