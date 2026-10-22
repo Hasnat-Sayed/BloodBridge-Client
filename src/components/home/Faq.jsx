@@ -1,5 +1,6 @@
 import React from 'react';
 import SectionTitle from './SectionTitle';
+import Reveal from './Reveal';
 
 const faqs = [
     { q: 'Who can donate blood?', a: 'Healthy adults aged 18–60, weighing at least 50 kg, with no active infection can usually donate.' },
@@ -15,11 +16,13 @@ const Faq = () => (
             <SectionTitle title="Frequently Asked" highlight="Questions" />
             <div className="space-y-3">
                 {faqs.map((f, i) => (
-                    <div key={f.q} className="collapse collapse-arrow bg-base-200 border border-base-300">
+                    <Reveal key={f.q} delay={i * 80}>
+                    <div className="collapse collapse-arrow bg-base-200 border border-base-300 border-l-4 border-l-primary hover:shadow-lg hover:bg-base-300/40 transition-all duration-300">
                         <input type="radio" name="faq" defaultChecked={i === 0} aria-label={f.q} />
                         <div className="collapse-title font-semibold text-heading">{f.q}</div>
                         <div className="collapse-content text-base-content/80">{f.a}</div>
                     </div>
+                    </Reveal>
                 ))}
             </div>
         </div>

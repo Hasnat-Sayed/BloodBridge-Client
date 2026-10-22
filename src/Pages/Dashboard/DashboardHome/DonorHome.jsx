@@ -5,6 +5,7 @@ import Loading from '../../../components/Loading';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 import { FaCheck, FaEdit, FaEye, FaTimes, FaTrash } from 'react-icons/fa';
+import DashboardOverview from '../../../components/dashboard/DashboardOverview';
 
 const DonorHome = () => {
     const { user } = useContext(AuthContext)
@@ -104,7 +105,7 @@ const DonorHome = () => {
                     />
                 </figure>
             </div>
-
+            <DashboardOverview role="donor" />
             {
                 latest.length == 0 ? (
                     <div className=" flex justify-center pt-14 items-center">
@@ -118,7 +119,7 @@ const DonorHome = () => {
                 ) : (
                     <div className='container bg-base-200 mx-auto pt-14 pb-16'>
                         <div className="text-center mb-5">
-                            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-heading">My Recent <span className='text-primary'>Donation Requests</span></h3>
+                            <h3 className="text-2xl md:text-4xl font-bold text-heading text-center mb-6">My Recent <span className='text-primary'>Donation Requests</span></h3>
                         </div>
 
                         <div className="overflow-x-auto rounded-box border border-base-300 bg-base-100 shadow-2xl">

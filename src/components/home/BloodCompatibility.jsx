@@ -27,20 +27,20 @@ const BloodCompatibility = () => {
                             key={g}
                             onClick={() => setSelected(g)}
                             aria-pressed={selected === g}
-                            className={`btn btn-lg w-20 ${selected === g ? 'btn-primary' : 'btn-outline'}`}
+                            className={`btn btn-lg w-20 hover:-translate-y-1 hover:scale-105 transition-all duration-200 ${selected === g ? 'btn-primary shadow-lg scale-105' : 'btn-outline'}`}
                         >
                             {g}
                         </button>
                     ))}
                 </div>
-                <div className="card bg-base-200 border border-base-300 max-w-3xl mx-auto shadow-md">
+                <div className="card bg-linear-to-br from-primary/10 to-accent/10 border border-base-300 max-w-3xl mx-auto shadow-md">
                     <div className="card-body items-center text-center">
                         <p className="text-base-content/80">
-                            <span className="font-bold text-primary text-xl">{selected}</span> donors can give blood to:
+                            <span key={selected} className="font-bold text-primary text-3xl inline-block pop-in">{selected}</span> donors can give blood to:
                         </p>
                         <div className="flex flex-wrap justify-center gap-2 mt-2">
-                            {canDonateTo[selected].map(g => (
-                                <span key={g} className="badge badge-lg badge-primary font-bold">{g}</span>
+                            {canDonateTo[selected].map((g, i) => (
+                                <span key={`${selected}-${g}`} style={{ animationDelay: `${i * 40}ms` }} className="badge badge-lg badge-primary font-bold pop-in">{g}</span>
                             ))}
                         </div>
                     </div>
