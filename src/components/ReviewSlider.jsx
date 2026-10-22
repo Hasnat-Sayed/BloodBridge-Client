@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
-import Loading from './Loading';
 
 const ReviewSlider = () => {
     const [reviews, setReviews] = useState([]);
@@ -26,7 +25,7 @@ const ReviewSlider = () => {
                 setReviews(res.data)
                 setLoading(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => { console.log(err); setLoading(false) })
     }, []);
 
     useEffect(() => {
@@ -35,7 +34,7 @@ const ReviewSlider = () => {
                 setCurrentIndex(prev =>
                     prev >= reviews.length - cardsPerView ? 0 : prev + 1
                 );
-            }, 1500);
+            }, 4000);
 
             return () => clearInterval(interval);
         }
@@ -47,18 +46,19 @@ const ReviewSlider = () => {
                 <FaStar
                     key={star}
                     size={18}
-                    className={star <= rating ? 'text-yellow-400' : 'text-gray-200'}
+                    className={star <= rating ? 'text-yellow-400' : 'text-base-300'}
                 />
             ))}
         </div>
     );
-    if (loading) return <Loading></Loading>
+    if (loading) return <div className="bg-base-200 py-16 flex justify-center"><span className="loading loading-spinner loading-lg text-primary"></span></div>
+    if (reviews.length === 0) return null
 
     return (
-        <div className="bg-base-300 py-16">
+        <div className="bg-base-200 py-16">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-heading mb-4">
+                    <h2 className="text-3xl md:text-5xl font-bold text-heading mb-4">
                         What Our <span className='text-primary'>Users Say</span>
                     </h2>
 
@@ -78,9 +78,9 @@ const ReviewSlider = () => {
                         {reviews.map((review, index) => (
                             <div
                                 key={review._id || index}
-                                className="w-full lg:w-1/3 px-5 shrink-0 hover:scale-105 duration-300"
+                                className="w-full lg:w-1/3 px-5 shrink-0 hover:scale-[1.02] duration-300"
                             >
-                                <div className="card rounded-2xl bg-linear-to-br from-primary/80 to-primary/10 p-6 h-full">
+                                <div className="card rounded-2xl bg-base-100 border border-base-300 shadow-md p-6 h-full">
                                     <div className="flex justify-center mb-4">
                                         <FaQuoteLeft className="text-primary text-3xl" />
                                     </div>
@@ -91,16 +91,16 @@ const ReviewSlider = () => {
                                             className="w-20 h-20 object-cover rounded-full mb-2 ring-4 ring-primary"
                                             alt={review.userName}
                                         />
-                                        <h3 className="text-xl font-semibold">{review.userName}</h3>
+                                        <h3 className="text-xl font-semibold text-heading">{review.userName}</h3>
                                     </div>
 
                                     <div className="flex justify-center">
-                                        <div className="bg-linear-to-r from-secondary/50 to-accent/50 px-6 py-3 rounded-full shadow-inner">
+                                        <div className="bg-base-200 px-6 py-3 rounded-full">
                                             {renderStars(review.rating)}
                                         </div>
                                     </div>
 
-                                    <p className="text-center text-gray-700 italic mt-3">
+                                    <p className="text-center text-base-content/80 italic mt-3">
                                         “{review.comment}”
                                     </p>
 
