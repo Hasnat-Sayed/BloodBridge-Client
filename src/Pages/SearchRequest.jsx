@@ -127,12 +127,12 @@ const SearchRequest = () => {
                                 {searchResults.map(donor => (
                                     <div
                                         key={donor?._id}
-                                        className="card bg-base-100 shadow-xl hover:shadow-2xl border border-primary hover:-translate-y-2 hover:shadow-primary/60 transition-all duration-300 "
+                                        className="group card h-full bg-base-100 border border-primary border-l-4 border-l-primary shadow-md hover:border-primary hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
                                     >
                                         <div className="card-body">
                                             <div className="flex items-center gap-4 pb-4 border-b border-secondary/30">
                                                 <div className="avatar">
-                                                    <div className="w-20 rounded-full ring ring-primary ring-offset-2">
+                                                    <div className="w-20 rounded-full ring ring-primary ring-offset-base-200 ring-offset-2 group-hover:scale-105 transition-transform">
                                                         <img
                                                             src={donor?.mainPhotoUrl}
                                                             alt={donor?.name}
@@ -142,14 +142,14 @@ const SearchRequest = () => {
                                                 </div>
                                                 <div className="flex-1">
                                                     <h3 className="font-semibold text-2xl text-heading">{donor?.name}</h3>
-                                                    <div className="badge badge-primary badge-lg font-bold text-lg mt-1 px-3 py-3">
+                                                    <div className="badge badge-primary badge-lg font-bold text-lg mt-1 px-3 py-3 heartbeat">
                                                         <FaTint className="mr-1" />
                                                         {donor?.blood}
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className="space-y-3 mt-3 ">
+                                            <div className="space-y-2">
                                                 <div className="flex items-center gap-2 text-base-content/80">
                                                     <FaEnvelope className="text-accent text-xl" />
                                                     <span className="font-medium text-lg">{donor?.email}</span>

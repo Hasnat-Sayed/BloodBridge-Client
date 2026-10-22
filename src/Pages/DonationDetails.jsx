@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { FaCalendarAlt, FaClock, FaEnvelope, FaHandHoldingHeart, FaHospital, FaInfoCircle, FaMapMarkerAlt, FaTint, FaUser } from 'react-icons/fa';
 import Loading from '../components/Loading';
@@ -188,8 +188,11 @@ const DonationDetails = () => {
                                 </button>
                             </div>
                         )}
-                    </div>
+                    </div>   
                 </div>
+                <Link to="/pending-requests" className="btn btn-accent btn-sm ">
+                Go Back 
+            </Link>
             </div>
 
 

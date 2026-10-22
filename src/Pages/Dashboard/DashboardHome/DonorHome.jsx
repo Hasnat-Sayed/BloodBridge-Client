@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Loading from '../../../components/Loading';
@@ -6,9 +6,9 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 import { FaCheck, FaEdit, FaEye, FaTimes, FaTrash } from 'react-icons/fa';
 import DashboardOverview from '../../../components/dashboard/DashboardOverview';
+import WelcomeCard from './WelcomeCard';
 
 const DonorHome = () => {
-    const { user } = useContext(AuthContext)
     const [latest, setLatest] = useState([])
     const axiosSecure = useAxiosSecure()
     const [loading, setLoading] = useState(true)
@@ -85,26 +85,7 @@ const DonorHome = () => {
 
     return (
         <div className="container mx-auto">
-            <div className="card lg:card-side flex-col-reverse lg:flex-row bg-base-100 shadow-2xl rounded-3xl">
-                <div className="card-body text-center lg:text-left text-3xl md:text-4xl lg:text-5xl">
-                    <h2 className=" font-semibold text-heading">
-                        Welcome back 👋
-                    </h2>
-                    <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-2">
-                        {user?.displayName}
-                    </p>
-
-                </div>
-
-                <figure className="p-6 flex justify-center">
-                    <img
-                        src={user?.photoURL}
-                        alt="User profile"
-                        className="w-30 h-30 rounded-full object-cover ring ring-primary ring-offset-base-100 ring-offset-2"
-                        referrerPolicy="no-referrer"
-                    />
-                </figure>
-            </div>
+            <WelcomeCard />
             <DashboardOverview role="donor" />
             {
                 latest.length == 0 ? (

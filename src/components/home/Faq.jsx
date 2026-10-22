@@ -11,17 +11,17 @@ const faqs = [
 ];
 
 const Faq = () => (
-    <section className="bg-base-100 py-16">
+    <section className="bg-base-300 py-16">
         <div className="container mx-auto px-4 lg:px-20 max-w-4xl">
             <SectionTitle title="Frequently Asked" highlight="Questions" />
             <div className="space-y-3">
                 {faqs.map((f, i) => (
                     <Reveal key={f.q} delay={i * 80}>
-                    <div className="collapse collapse-arrow bg-base-200 border border-base-300 border-l-4 border-l-primary hover:shadow-lg hover:bg-base-300/40 transition-all duration-300">
-                        <input type="radio" name="faq" defaultChecked={i === 0} aria-label={f.q} />
-                        <div className="collapse-title font-semibold text-heading">{f.q}</div>
-                        <div className="collapse-content text-base-content/80">{f.a}</div>
-                    </div>
+                        <div className="collapse collapse-arrow bg-base-100 border border-base-200/50 border-l-4 border-l-primary shadow-md  hover:shadow-lg hover:bg-base-200 transition-all duration-300">
+                            <input type="radio" name="faq" defaultChecked={i === 0} aria-label={f.q} />
+                            <div className="collapse-title font-semibold text-heading">{f.q}</div>
+                            <div className="collapse-content text-base-content/80">{f.a}</div>
+                        </div>
                     </Reveal>
                 ))}
             </div>

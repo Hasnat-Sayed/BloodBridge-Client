@@ -5,7 +5,6 @@ import SectionTitle from './SectionTitle';
 import Reveal from './Reveal';
 import useInView from '../../hooks/useInView';
 
-// counts up from 0 -> value
 const Counter = ({ value = 0, prefix = '' }) => {
     const [n, setN] = useState(0);
     const [ref, inView] = useInView(0.4);
