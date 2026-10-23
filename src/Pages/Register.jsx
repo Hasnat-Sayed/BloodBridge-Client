@@ -40,7 +40,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setBtnLoading(true)
+
         const email = e.target.email.value;
         const pass = e.target.password.value;
 
@@ -61,6 +61,7 @@ const Register = () => {
             return;
         }
         setError("");
+        setBtnLoading(true)
 
 
         const name = e.target.name.value;
@@ -68,13 +69,17 @@ const Register = () => {
         const file = photo.files[0];
         const blood = e.target.blood.value;
 
-        const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgbbURL}`, { image: file },
-            {
-                headers: {
+        let res;
+        try {
+            res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgbbURL}`, { image: file },
+                { headers: { 'Content-Type': 'multipart/form-data' } })
+        } catch (err) {
+            console.log(err);
+            toast.error("Photo upload failed. Please try again.");
+            setBtnLoading(false);
+            return;
+        }
 
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
         const mainPhotoUrl = res.data.data.display_url
 
         const formData = {
@@ -107,11 +112,13 @@ const Register = () => {
                     }).catch((error) => {
                         console.log(error)
                         toast.error(error.message);
+                        setBtnLoading(false);
                     })
                 })
                 .catch((error) => {
                     console.log(error)
                     toast.error(error.message);
+                    setBtnLoading(false);
 
                 })
             console.log(user)
@@ -122,49 +129,37 @@ const Register = () => {
     }
     const handleGoogle = async () => {
         setGoogleLoading(true);
-        const result = await signInWithGoogle();
-        const user = result.user;
-        setUser(user);
-        const encodedEmail = encodeURIComponent(user.email);
-
         try {
-            const checkUser = await axios.get(
-                `https://bloodbridge-puce.vercel.app/users/${encodedEmail}`
-            );
+            const result = await signInWithGoogle();
+            const user = result.user;
+            setUser(user);
 
-            if (checkUser.data) {
+            try {
+                await axios.get(`https://bloodbridge-puce.vercel.app/users/${encodeURIComponent(user.email)}`);
                 toast.success("Login Successful");
-                setGoogleLoading(false);
                 navigate(location.state || "/");
-            }
-        } catch (checkError) {
+            } catch (checkError) {
+                if (checkError.response?.status !== 404) throw checkError;
 
-            if (checkError.response && checkError.response.status === 404) {
-
-                const basicUserData = {
+                await axios.post('https://bloodbridge-puce.vercel.app/users', {
                     email: user.email,
                     name: user.displayName,
                     mainPhotoUrl: user.photoURL,
                     blood: "",
                     district: "",
                     upazila: ""
-                };
-
-                try {
-                    await axios.post('https://bloodbridge-puce.vercel.app/users', basicUserData);
-
-                    toast.info("Welcome! Please update your profile");
-                    setGoogleLoading(false);
-                    navigate("/dashboard/profile");
-
-                } catch (createError) {
-                    console.error(createError);
-                    toast.error("Failed to create user. Please try again.");
-                    setGoogleLoading(false);
-                }
+                });
+                toast.info("Welcome! Please update your profile");
+                navigate("/dashboard/profile");
             }
+        } catch (error) {
+            console.error(error);
+            if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
+                toast.error("Google sign-in failed. Please try again.");
+            }
+        } finally {
+            setGoogleLoading(false);
         }
-
     };
 
     return (

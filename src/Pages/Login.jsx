@@ -8,6 +8,12 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaRegEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 
+const DEMO_USERS = [
+    { role: 'Admin', email: 'admin@mail.com', password: '123456aA' },
+    { role: 'Volunteer', email: 'messi@mail.com', password: '123456aA' },
+    { role: 'Donor', email: 'rakin@mail.com', password: '123456aA' },
+];
+
 const Login = () => {
 
     const { setUser, setLoading, signInWithGoogle } = useContext(AuthContext);
@@ -17,7 +23,8 @@ const Login = () => {
     const [btnLoading, setBtnLoading] = useState(false);
     const [googleLoading, setGoogleLoading] = useState(false);
     const [show, setShow] = useState(false);
-
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,55 +43,45 @@ const Login = () => {
             })
             .catch((e) => {
                 console.log(e);
-                toast.error(e.message);
+                const wrong = ['auth/invalid-credential', 'auth/wrong-password', 'auth/user-not-found'].includes(e.code);
+                toast.error(wrong ? "Invalid email or password" : e.message);
+                setBtnLoading(false);
             });
     }
 
     const handleGoogle = async () => {
         setGoogleLoading(true);
-        const result = await signInWithGoogle();
-        const user = result.user;
-        setUser(user);
-        const encodedEmail = encodeURIComponent(user.email);
-
         try {
-            const checkUser = await axios.get(
-                `https://bloodbridge-puce.vercel.app/users/${encodedEmail}`
-            );
+            const result = await signInWithGoogle();
+            const user = result.user;
+            setUser(user);
 
-            if (checkUser.data) {
+            try {
+                await axios.get(`https://bloodbridge-puce.vercel.app/users/${encodeURIComponent(user.email)}`);
                 toast.success("Login Successful");
-                setGoogleLoading(false);
                 navigate(location.state || "/");
-            }
-        } catch (checkError) {
+            } catch (checkError) {
+                if (checkError.response?.status !== 404) throw checkError;
 
-            if (checkError.response && checkError.response.status === 404) {
-
-                const basicUserData = {
+                await axios.post('https://bloodbridge-puce.vercel.app/users', {
                     email: user.email,
                     name: user.displayName,
                     mainPhotoUrl: user.photoURL,
                     blood: "",
                     district: "",
                     upazila: ""
-                };
-
-                try {
-                    await axios.post('https://bloodbridge-puce.vercel.app/users', basicUserData);
-
-                    toast.info("Welcome! Please update your profile");
-                    setGoogleLoading(false);
-                    navigate("/dashboard/profile");
-
-                } catch (createError) {
-                    console.error(createError);
-                    toast.error("Failed to create user. Please try again.");
-                    setGoogleLoading(false);
-                }
+                });
+                toast.info("Welcome! Please update your profile");
+                navigate("/dashboard/profile");
             }
+        } catch (error) {
+            console.error(error);
+            if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
+                toast.error("Google sign-in failed. Please try again.");
+            }
+        } finally {
+            setGoogleLoading(false);
         }
-
     };
 
 
@@ -104,6 +101,7 @@ const Login = () => {
                             type="email"
                             className="input w-full bg-base-200"
                             placeholder="Enter Your Email"
+                            value={email} onChange={(e) => setEmail(e.target.value)}
                             required
                         />
 
@@ -114,6 +112,7 @@ const Login = () => {
                                 type={show ? "text" : "password"}
                                 className="input w-full bg-base-200"
                                 placeholder="Enter Your Password"
+                                value={password} onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
 
@@ -122,7 +121,7 @@ const Login = () => {
                         </div>
 
 
-                        
+
 
 
                         <button type="submit" className="btn btn-primary mt-3" disabled={btnLoading}>
@@ -162,6 +161,24 @@ const Login = () => {
                             </Link>
                         </p>
                     </fieldset>
+                    <div className=" md:px-20">
+                        <div className="bg-base-300 rounded-xl shadow shadow-primary/30 p-2 flex flex-col justify-center items-center">
+                        <p className="text-sm text-base-content/90 mb-2">Try a demo account:</p>
+                        <div className="flex flex-wrap gap-2">
+                            {DEMO_USERS.map(d => (
+                                <button
+                                    key={d.role}
+                                    type="button"
+                                    onClick={() => { setEmail(d.email); setPassword(d.password); }}
+                                    className="btn btn-sm btn-outline btn-primary"
+                                >
+                                    {d.role}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                    </div>
+                    
                 </form>
             </div>
         </div>
