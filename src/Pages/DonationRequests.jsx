@@ -72,7 +72,7 @@ const DonationRequests = () => {
                         Pending <span className="text-primary">Blood</span> Donation <span className="text-accent">Requests</span>
                     </h3>
                     {!loading && !error && total > 0 && (
-                        <p className=" text-base-content/80">
+                        <p className="mt-4 text-base-content/80">
                             Showing {(currentPage - 1) * PAGE_SIZE + 1}–{(currentPage - 1) * PAGE_SIZE + requests.length} of {total} requests
                         </p>
                     )}
