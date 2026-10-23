@@ -5,31 +5,13 @@ import { FaUserCheck, FaUserShield, FaUserTag } from 'react-icons/fa';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { AuthContext } from '../../../provider/AuthProvider';
 import RoleMenu from '../../../components/dashboard/RoleMenu';
+import TableSkeletonRows from '../../../components/dashboard/TableSkeletonRows';
 
 const ROLE_BADGE = {
   admin: 'badge-primary',
   volunteer: 'badge-secondary',
   donor: 'badge-accent',
 };
-
-const SkeletonRows = () => (
-  Array.from({ length: 6 }).map((_, i) => (
-    <tr key={i}>
-      <td>
-        <div className="flex items-center gap-3">
-          <div className="skeleton h-12 w-12 rounded-full shrink-0"></div>
-          <div className="space-y-2">
-            <div className="skeleton h-4 w-32"></div>
-            <div className="skeleton h-3 w-44"></div>
-          </div>
-        </div>
-      </td>
-      <td><div className="skeleton h-6 w-20 rounded-full"></div></td>
-      <td><div className="skeleton h-6 w-28 rounded-full"></div></td>
-      <td><div className="skeleton h-8 w-32"></div></td>
-    </tr>
-  ))
-);
 
 const confirm = (title, text, confirmText) =>
   Swal.fire({
@@ -136,7 +118,7 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {loading ? <SkeletonRows /> : users.map(u => {
+              {loading ? <TableSkeletonRows columns={4} /> : users.map(u => {
                 const isSelf = u.email === me?.email;
                 const active = u.status === 'active';
                 const options = roleOptions(u);
